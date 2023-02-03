@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,13 +7,7 @@ public static class Data
     public static int Health;
     public static string SourceString;
     public static List<MovingCharacterData> GeneratedCharacterData;
-
-    public static List<MovingCharacterData> GenerateCharacterData()
-    {
-        var result = new List<MovingCharacterData>();
-
-        return result;
-    }
+    public static List<char> ResultData;
     
     public static Queue<MovingCharacterData> CharacterQueue;
     
