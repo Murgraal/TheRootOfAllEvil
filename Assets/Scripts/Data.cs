@@ -1,24 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class Data
 {
-    public static int Health;
-    public static string SourceString;
-    public static List<MovingCharacterData> GeneratedCharacterData;
-
-    public static List<MovingCharacterData> GenerateCharacterData()
-    {
-        var result = new List<MovingCharacterData>();
-
-        return result;
-    }
+   
+    public static List<string> SourceString  = new List<string>();
+    public static List<MovingCharacterData> GeneratedCharacterData = new List<MovingCharacterData>();
+    public static List<char> ResultData = new List<char>();
+    public static HashSet<KeyCode> PolledKeycodes = new HashSet<KeyCode>();
     
     public static Queue<MovingCharacterData> CharacterQueue;
     
     public static class GamePlay
     {
-        public static List<MovingCharacterData> MovingCharactersInHitZone;
+        public static int Level;
+        public static int Health;
+        public static List<MovingCharacterData> MovingCharactersInHitZone = new List<MovingCharacterData>();
     }
 
     public static List<Dictionary<KeyCode, char>> KeyBoardLayout => _keyboardLayoutTemplate;

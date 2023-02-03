@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MovingCharacterData
 {
-    public MovingCharacterData(char character)
+    public MovingCharacterData(char character, int index)
     {
         Letter = character;
         if (!Enum.TryParse<KeyCode>(Letter.ToString(), true, out ValidKey))
