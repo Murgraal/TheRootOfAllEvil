@@ -11,19 +11,30 @@ public class MovingCharacter : MonoBehaviour
         this.data = data;
     }
 
-    public void OnTriggerEnter(Collider2D col)
+    public void UpdatePosition()
     {
-        if (col.CompareTag("Finish"))
+        var slider = Main.GameManager.GetCharacterSlider(data.sliderIndex);
+
+        transform.position = slider.GetPosByTime(data.startTime);
+
+        if (slider.IsInHitZone(transform.position))
         {
-            OnEnterHitZone?.Invoke(data);
+            EnterHitZone();
+        }
+        if (slider.HasReachedEnd(data.startTime))
+        {
+
         }
     }
 
-    public void OnTriggerExit(Collider2D col)
+    public void EnterHitZone()
     {
-        if (col.CompareTag("Finish"))
-        {
-            OnExitHitZone?.Invoke(data);
-        }
+        OnEnterHitZone?.Invoke(data);
+    }
+
+    public void ExitHitZone()
+    {
+        OnExitHitZone?.Invoke(data);
+        
     }
 }

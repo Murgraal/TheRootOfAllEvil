@@ -12,6 +12,7 @@ public static class Main
     public static void Init()
     {
         GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
+        
         MovingCharacter.OnEnterHitZone += OnEnterHitZone;
         MovingCharacter.OnExitHitZone += OnExitHitZone;
     }
