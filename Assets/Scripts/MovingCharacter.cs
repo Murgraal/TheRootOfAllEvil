@@ -11,7 +11,7 @@ public class MovingCharacter : MonoBehaviour
         this.data = data;
     }
 
-    public void OnTriggerEnter(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Finish"))
         {
@@ -19,7 +19,7 @@ public class MovingCharacter : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider2D col)
+    public void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Finish"))
         {

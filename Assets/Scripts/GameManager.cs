@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
-    public List<KeyCode> PolledKeycodes;
+    
     private void Start()
     {
         
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (var key in PolledKeycodes)
+        foreach (var key in Data.PolledKeycodes)
         {
             if (Input.GetKeyDown(key))
             {
