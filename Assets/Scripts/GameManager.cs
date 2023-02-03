@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
+
     public CharacterSlider GetCharacterSlider(int index) => _characterSliders[index];
     private CharacterSlider[] _characterSliders;
     
@@ -23,5 +24,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 }

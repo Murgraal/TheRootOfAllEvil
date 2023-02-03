@@ -59,7 +59,7 @@ public static class Main
         if (Data.CharacterQueue.Count > 0)
             return Data.CharacterQueue.Dequeue();
         
-        return null;
+        return null; // End Of Level
     }
 
     public static void OnEnterHitZone(MovingCharacterData data)
@@ -102,5 +102,19 @@ public static class Main
         result = result.Where(x => Data.PolledKeycodes.Contains(x.ValidKey)).ToList();
         result.ForEach(x => Debug.Log(x.Letter));
         return new Queue<MovingCharacterData>(result);
+    }
+
+    public static int GetSliderIndexFromKey(KeyCode key)
+    {
+        for (int i = 0; i < Data.KeyBoardLayout.Count; i++)
+        {
+            if (Data.KeyBoardLayout[i].ContainsKey(key))
+            {
+                // TODO check if slider exists
+                return i;
+            }
+        }
+        Debug.Log($"Key {key} is not a letter");
+        return -1;
     }
 }

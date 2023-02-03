@@ -6,9 +6,13 @@ public class MovingCharacter : MonoBehaviour
     public MovingCharacterData data;
     public static event Action<MovingCharacterData> OnEnterHitZone;
     public static event Action<MovingCharacterData> OnExitHitZone;
+
+    private bool _isInHitZone;
+
     public void Init(MovingCharacterData data)
     {
         this.data = data;
+        _isInHitZone = false;
     }
 
     public void UpdatePosition()
@@ -17,24 +21,21 @@ public class MovingCharacter : MonoBehaviour
 
         transform.position = slider.GetPosByTime(data.startTime);
 
-        if (slider.IsInHitZone(transform.position))
-        {
+        if (slider.IsInHitZone(transform.position) && !_isInHitZone)
             EnterHitZone();
-        }
-        if (slider.HasReachedEnd(data.startTime))
-        {
-
-        }
+        else if (!slider.IsInHitZone(transform.position) && _isInHitZone)
+            ExitHitZone();
     }
 
     public void EnterHitZone()
     {
+        _isInHitZone = true;
         OnEnterHitZone?.Invoke(data);
     }
 
     public void ExitHitZone()
     {
+        _isInHitZone = false;
         OnExitHitZone?.Invoke(data);
-        
     }
 }
