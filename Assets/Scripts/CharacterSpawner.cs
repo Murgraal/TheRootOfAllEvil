@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSpawner
+public class CharacterSpawner : MonoBehaviour
 {
     private GameObject _movingCharacterPrefab;
     private float _spawnTempo;
@@ -16,7 +16,7 @@ public class CharacterSpawner
         _startTime = Time.time;
     }
 
-    private void Update()
+    public void SpawnTick()
     {
         if (!_isActive)
             return;
