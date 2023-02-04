@@ -9,7 +9,15 @@ public class LevelRecorder : MonoBehaviour
     [SerializeField] private LevelData currentRecorded;
     [SerializeField] private float timer;
     [SerializeField] private AudioSource audio;
-    
+
+    private void Start()
+    {
+        foreach (var keys in Data.KeyBoardLayout)
+        {
+            Data.PolledKeycodes.UnionWith(keys.Keys);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public CharacterSliderSystem SliderSystem;
 
+    public EffectSpawner EffectSpawner;
+
     private static Transform Line;
 
     [SerializeField]
@@ -21,7 +23,9 @@ public class GameManager : MonoBehaviour
     private List<LevelData> LevelDatas;
     private Level CurrentLevel;
 
-    private AudioSource audio;
+    public AudioSource audio;
+
+    public AudioSource[] audiosources;
 
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
@@ -32,7 +36,6 @@ public class GameManager : MonoBehaviour
     {
         CharacterSpawner.StartSpawning();
         SliderSystem.Init();
-        audio = GetComponent<AudioSource>();
     }
 
     public void StartNewLevel()
@@ -42,9 +45,10 @@ public class GameManager : MonoBehaviour
         {
             levels.Remove(CurrentLevel.Data);
         }
-        CurrentLevel = new Level(levels[Random.Range(0, levels.Count)]);
-        audio.loop = true;
-        audio.clip = CurrentLevel.Data.Track;
+        var random = Random.Range(0, levels.Count);
+        CurrentLevel = new Level(levels[random]);
+
+        audio = audiosources[random];
     }
 
     private void Update()

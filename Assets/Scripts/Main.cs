@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 public static class Main
 {
@@ -123,6 +119,7 @@ public static class Main
                     GameManager.CharacterSpawner.DespawnCharacter(hitCharacter);
                     Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                     Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
+                    Main.GameManager.EffectSpawner.SpawnEffect(hitCharacter.transform.position);
                 }
             }
         }
