@@ -9,36 +9,32 @@ public class CharacterSliderSystem : MonoBehaviour
     private SpriteRenderer _hitZoneBottomRenderer;
 
     [Range(0, 1)]
-    [SerializeField]
-    private float _hitZoneStart;
-
+    public float HitZoneStart;
     [Range(0,1)]
-    [SerializeField]
-    private float _hitZoneEnd;
+    public float HitZoneEnd;
+    public float NoteDuration;
 
     [SerializeField]
     private float _sliderLength;
 
-    [SerializeField]
-    private float _noteDuration;
 
     [SerializeField]
     private CharacterSlider[] _characterSliders;
 
     public void Init()
     {
-        _characterSliders[0].Init(_sliderLength, _noteDuration);
-        _characterSliders[2].Init(_sliderLength, _noteDuration);
-        _characterSliders[1].Init(_sliderLength, _noteDuration);
+        _characterSliders[0].Init(_sliderLength, NoteDuration);
+        _characterSliders[2].Init(_sliderLength, NoteDuration);
+        _characterSliders[1].Init(_sliderLength, NoteDuration);
 
-        _hitZoneTopRenderer.transform.position = _characterSliders[1].GetPos(_hitZoneStart);
-        _hitZoneBottomRenderer.transform.position = _characterSliders[1].GetPos(_hitZoneEnd);
+        _hitZoneTopRenderer.transform.position = _characterSliders[1].GetPos(HitZoneStart);
+        _hitZoneBottomRenderer.transform.position = _characterSliders[1].GetPos(HitZoneEnd);
 
     }
 
     public bool IsInHitZone(float t)
     {
-        return t > _hitZoneStart && t < _hitZoneEnd;
+        return t > HitZoneStart && t < HitZoneEnd;
     }
 
     public CharacterSlider GetSliderByIndex(SliderIndex index) => _characterSliders[(int)index];
