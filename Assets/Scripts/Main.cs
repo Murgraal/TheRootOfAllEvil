@@ -9,11 +9,15 @@ using UnityEngine.SocialPlatforms.GameCenter;
 
 public static class Main
 {
-    public const string GameManagerPath = "Assets/Prefabs/GameManager.prefab";
+    public const string PrefabPath = "Assets/Prefabs/";
+    public const string GameManagerPath = PrefabPath + "GameManager.prefab";
     public const string SourceTextPath = "/Texts/";
+    public const string UIPrefabPath = PrefabPath + "UI.prefab";
 
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
+
+    public static event Action OnHealthChanged; 
 
     public static float[] HealthRewardDistanceTresholds = new[]
     {
@@ -30,6 +34,7 @@ public static class Main
     };
     
     public static GameManager GameManager;
+    public static GameObject UI;
     
     [RuntimeInitializeOnLoadMethod]
     public static void Init()
@@ -60,6 +65,7 @@ public static class Main
         GameManager.OnKeyPressed += OnKeyPressed;
         
         GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
+        UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
     }
 
     public static void OnKeyPressed(KeyCode keyCode)
@@ -81,6 +87,7 @@ public static class Main
                 Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
             }
         }
+        OnHealthChanged?.Invoke();
     }
 
     public static MovingCharacterData GetLetterFromQueue()
