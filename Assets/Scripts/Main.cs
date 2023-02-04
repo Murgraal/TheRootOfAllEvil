@@ -45,6 +45,15 @@ public static class Main
 
     public static void OnKeyPressed(KeyCode keyCode)
     {
+        if (Data.GamePlay.MovingCharactersInHitZone.Count == 0)
+        {
+            Data.GamePlay.Health--;
+
+            if (Data.GamePlay.Health <= 0)
+            {
+                Debug.Log("You play shit. You loose : - DDDDDDDD");
+            }
+        }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
             if (keyinhitzone.ValidKey == keyCode)
