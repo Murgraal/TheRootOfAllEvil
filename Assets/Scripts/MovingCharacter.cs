@@ -8,7 +8,6 @@ public class MovingCharacter : MonoBehaviour
     public static event Action<MovingCharacterData> OnEnterHitZone;
     public static event Action<MovingCharacterData> OnExitHitZone;
 
-    public bool IsActive;
     private bool _isInHitZone;
     [SerializeField]
     private TMP_Text keyText;
@@ -16,14 +15,18 @@ public class MovingCharacter : MonoBehaviour
     public void Init(MovingCharacterData data)
     {
         this.data = data;
+        data.startTime = Time.time;
         _isInHitZone = false;
         keyText.text = this.data.Letter.ToString();
     }
 
+    private void Update()
+    {
+        UpdatePosition();
+    }
+
     public void UpdatePosition()
     {
-        if (!IsActive) return;
-
         var sliderSystem = Main.GameManager.SliderSystem;
         var slider = sliderSystem.GetSliderByIndex(data.sliderIndex);
         var distanceTraveled = slider.GetT(data.startTime);
@@ -37,7 +40,7 @@ public class MovingCharacter : MonoBehaviour
             ExitHitZone();
         if (distanceTraveled >= 1)
         {
-            Main.GameManager.Pool.Release(this);
+            Main.GameManager.CharacterSpawner.DespawnCharacter(this);
         }
     }
 

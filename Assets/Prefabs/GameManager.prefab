@@ -433,6 +433,14 @@ PrefabInstance:
       value: CharacterSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 9007709462530472750, guid: 73fa4b2ed97abf74e97357075e652df9, type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: -6177627351398693827, guid: 3b30574360415c84cb924f2fff99b603, type: 3}
+    - target: {fileID: 9007709462530472750, guid: 73fa4b2ed97abf74e97357075e652df9, type: 3}
+      propertyPath: _keyPrefab
+      value: 
+      objectReference: {fileID: -6177627351398693827, guid: 3b30574360415c84cb924f2fff99b603, type: 3}
+    - target: {fileID: 9007709462530472750, guid: 73fa4b2ed97abf74e97357075e652df9, type: 3}
       propertyPath: _spawnTempo
       value: 0.2
       objectReference: {fileID: 0}

@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
     public CharacterSpawner CharacterSpawner;
-    public CharacterPool Pool;
     public List<MovingCharacter> SpawnedCharacters = new List<MovingCharacter>();
 
     public CharacterSliderSystem SliderSystem;
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
     {
         CharacterSpawner.StartSpawning();
         SliderSystem.Init();
-        Pool = new CharacterPool(_movingCharacterPrefab);
         audio = GetComponent<AudioSource>();
         StartNewLevel();
     }
@@ -66,18 +64,6 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(key))
             {
                 OnKeyPressed?.Invoke(key);
-            }
-        }
-        UpdateCharacters();
-    }
-
-    private void UpdateCharacters()
-    {
-        foreach (var character in SpawnedCharacters)
-        {
-            if (character.IsActive)
-            {
-                character.UpdatePosition();
             }
         }
     }

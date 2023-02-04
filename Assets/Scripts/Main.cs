@@ -108,7 +108,7 @@ public static class Main
                 var hitCharacter = GameManager.SpawnedCharacters.FirstOrDefault(x => x.data == keyinhitzone);
                 if (hitCharacter != null)
                 {
-                    GameManager.Pool.Release(hitCharacter);
+                    GameManager.CharacterSpawner.DespawnCharacter(hitCharacter);
                     Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                     Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
                 }

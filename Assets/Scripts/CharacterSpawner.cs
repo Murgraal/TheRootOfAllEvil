@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class CharacterSpawner : MonoBehaviour
 {
+    [SerializeField]
+    private MovingCharacter _keyPrefab;
+
     private bool _isActive = false;
 
     public void StartSpawning()
@@ -29,47 +32,20 @@ public class CharacterSpawner : MonoBehaviour
             return;
         }
 
-        var spawnedCharacter = Main.GameManager.Pool.Aquire();
+        var spawnedCharacter = GameObject.Instantiate(_keyPrefab); // Get character object
         
         spawnedCharacter.Init(nextLetter);
-        spawnedCharacter.data.startTime = Time.time;
 
 //        Debug.Log(spawnedCharacter.data.sliderIndex + " : " + spawnedCharacter.data.Letter);
 
         Main.GameManager.SpawnedCharacters.Add(spawnedCharacter);
     }
-}
 
-public class CharacterPool
-{
-    public MovingCharacter _prefab;
-    public Stack<MovingCharacter> pooledCharacters = new Stack<MovingCharacter>();
-
-    public CharacterPool(MovingCharacter prefab)
+    public void DespawnCharacter(MovingCharacter character, float delay = 0)
     {
-        _prefab = prefab;
+        Destroy(character.gameObject, delay);
     }
 
-    public MovingCharacter Aquire()
-    {
-        MovingCharacter aquiredCharacter = null;
-
-        if (pooledCharacters.Count > 0)
-            aquiredCharacter = pooledCharacters.Pop();
-        else
-            aquiredCharacter = GameObject.Instantiate(_prefab);
-
-        aquiredCharacter.gameObject.SetActive(true);
-        aquiredCharacter.IsActive = true;
-        return aquiredCharacter;
-    }
-
-    public void Release(MovingCharacter character)
-    {
-        character.gameObject.SetActive(false);
-        character.IsActive = false;
-        pooledCharacters.Push(character);
-    }
 }
 
 public enum SliderIndex
