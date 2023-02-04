@@ -126,6 +126,7 @@ public static class Main
         var result = new List<MovingCharacterData>();
         var charData = GenerateCharacterData(Data.GamePlay.Level);
         var counter = charData.Count;
+
         for (int i = charData.Count - 1; i > 0; i--)
         {
             var randomIndex = UnityEngine.Random.Range(0, counter);

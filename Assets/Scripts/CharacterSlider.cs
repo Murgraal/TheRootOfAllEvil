@@ -1,27 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CharacterSlider : MonoBehaviour
 {
     private Vector2 _startPos;
     private Vector2 _endPos;
 
-    private Vector2 _startHitZone;
-    private Vector2 _endHitZone;
+    private float _duration;
 
-    public void Init(float sliderLength, float startHitZoneT, float hitzoneSize)
+    public void Init(float sliderLength, float duration)
     {
         _startPos = transform.position;
         _endPos = transform.position + new Vector3(0, -sliderLength, 0);
-        _startHitZone = GetPos(startHitZoneT);
-        _endHitZone = GetPos(startHitZoneT + hitzoneSize);
+        _duration = duration;
     }
 
-    public bool IsInHitZone(Vector2 position)
-    {
-        return position.y < _startHitZone.y && position.y > _endHitZone.y;
-    }
-
-    private float GetT(float startTime) => Time.time - startTime; // TODO: Make scalable time measurement
+    public float GetT(float startTime) => (startTime + _duration - Time.time) / _duration;
 
     public bool HasReachedEnd(float startTime)
     {

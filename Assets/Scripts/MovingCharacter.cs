@@ -17,19 +17,26 @@ public class MovingCharacter : MonoBehaviour
 
     public void UpdatePosition()
     {
-        var slider = Main.GameManager.CharacterSpawner.GetSliderByIndex(data.sliderIndex);
+        var sliderSystem = Main.GameManager.SliderSystem;
+        var slider = sliderSystem.GetSliderByIndex(data.sliderIndex);
+        var distanceTraveled = slider.GetT(data.startTime);
 
         transform.position = slider.GetPosByTime(data.startTime);
         data.yPos = transform.position.y;
 
-        if (slider.IsInHitZone(transform.position) && !_isInHitZone)
+        if (sliderSystem.IsInHitZone(distanceTraveled) && !_isInHitZone)
             EnterHitZone();
-        else if (!slider.IsInHitZone(transform.position) && _isInHitZone)
+        else if (!sliderSystem.IsInHitZone(distanceTraveled) && _isInHitZone)
             ExitHitZone();
+        if (slider.HasReachedEnd(distanceTraveled))
+        {
+            Debug.Log("Reached End");
+        }
     }
 
     public void EnterHitZone()
     {
+        Debug.Log("In hit zone");
         _isInHitZone = true;
         OnEnterHitZone?.Invoke(data);
     }

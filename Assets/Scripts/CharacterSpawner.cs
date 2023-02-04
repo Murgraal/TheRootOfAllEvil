@@ -6,22 +6,14 @@ public class CharacterSpawner : MonoBehaviour
     private MovingCharacter _movingCharacterPrefab;
 
     [SerializeField]
-    private CharacterSlider[] _characterSliders = new CharacterSlider[3];
-
-    private float _spawnTempo = 2f;
+    private float _spawnTempo;
     private float _lastSpawnTime;
     private bool _isActive = false;
-
-    public CharacterSlider GetSliderByIndex(SliderIndex index) => _characterSliders[(int)index];
 
     public void StartSpawning()
     {
         _lastSpawnTime = Time.time;
         _isActive = true;
-
-        _characterSliders[0].Init(5f, 0.8f, 0.9f);
-        _characterSliders[1].Init(5f, 0.8f, 0.9f);
-        _characterSliders[2].Init(5f, 0.8f, 0.9f);
     }
 
     public void StopSpawning()

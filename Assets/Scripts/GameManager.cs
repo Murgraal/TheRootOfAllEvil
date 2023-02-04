@@ -6,10 +6,21 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
     public CharacterSpawner CharacterSpawner;
+
     public List<MovingCharacter> spawnedCharacters;
+
+    public CharacterSliderSystem SliderSystem;
+
+    private static Transform Line;
+
+    private CharacterSliderSystem _sliderSystem;
+
+    public static float LineYPos => Line == null ? 0 : Line.position.y;
+
     private void Start()
     {
         CharacterSpawner.StartSpawning();
+        SliderSystem.Init();
     }
 
     private void Update()
