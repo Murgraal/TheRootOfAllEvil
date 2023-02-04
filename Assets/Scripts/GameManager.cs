@@ -5,13 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
-
-    public CharacterSlider GetCharacterSlider(int index) => _characterSliders[index];
-    private CharacterSlider[] _characterSliders;
-    
+    public CharacterSpawner CharacterSpawner;
+    public List<MovingCharacter> spawnedCharacters;
     private void Start()
     {
-        
+        CharacterSpawner.StartSpawning();
     }
 
     private void Update()
@@ -22,6 +20,16 @@ public class GameManager : MonoBehaviour
             {
                 OnKeyPressed?.Invoke(key);
             }
+        }
+        CharacterSpawner.SpawnTick();
+        UpdateCharacters();
+    }
+
+    private void UpdateCharacters()
+    {
+        foreach (var character in spawnedCharacters)
+        {
+            character.UpdatePosition();
         }
     }
 }

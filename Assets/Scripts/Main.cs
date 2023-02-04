@@ -104,17 +104,17 @@ public static class Main
         return new Queue<MovingCharacterData>(result);
     }
 
-    public static int GetSliderIndexFromKey(KeyCode key)
+    public static SliderIndex GetSliderIndexFromKey(KeyCode key)
     {
         for (int i = 0; i < Data.KeyBoardLayout.Count; i++)
         {
             if (Data.KeyBoardLayout[i].ContainsKey(key))
             {
                 // TODO check if slider exists
-                return i;
+                return (SliderIndex)i;
             }
         }
         Debug.Log($"Key {key} is not a letter");
-        return -1;
+        return SliderIndex.InvalidSlider;
     }
 }

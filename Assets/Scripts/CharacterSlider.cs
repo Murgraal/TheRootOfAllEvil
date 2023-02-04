@@ -8,10 +8,10 @@ public class CharacterSlider : MonoBehaviour
     private Vector2 _startHitZone;
     private Vector2 _endHitZone;
 
-    public void Init(Vector2 startPos, Vector2 endPos, float startHitZoneT, float hitzoneSize)
+    public void Init(float sliderLength, float startHitZoneT, float hitzoneSize)
     {
-        _startPos = startPos;
-        _endPos = endPos;
+        _startPos = transform.position;
+        _endPos = transform.position + new Vector3(0, -sliderLength, 0);
         _startHitZone = GetPos(startHitZoneT);
         _endHitZone = GetPos(startHitZoneT + hitzoneSize);
     }

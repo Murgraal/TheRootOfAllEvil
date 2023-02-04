@@ -17,7 +17,7 @@ public class MovingCharacter : MonoBehaviour
 
     public void UpdatePosition()
     {
-        var slider = Main.GameManager.GetCharacterSlider(data.sliderIndex);
+        var slider = Main.GameManager.CharacterSpawner.GetSliderByIndex(data.sliderIndex);
 
         transform.position = slider.GetPosByTime(data.startTime);
 
