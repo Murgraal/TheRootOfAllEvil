@@ -8,12 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
     public CharacterSpawner CharacterSpawner;
-
-    public List<MovingCharacter> SpawnedCharacters;
+    public CharacterPool Pool;
+    public List<MovingCharacter> SpawnedCharacters = new List<MovingCharacter>();
 
     public CharacterSliderSystem SliderSystem;
 
     private static Transform Line;
+
+    [SerializeField]
+    private MovingCharacter _movingCharacterPrefab;
 
     [SerializeField]
     private List<LevelData> LevelDatas;
@@ -21,14 +24,13 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audio;
 
-    private CharacterSliderSystem _sliderSystem;
-
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
     private void Start()
     {
         CharacterSpawner.StartSpawning();
         SliderSystem.Init();
+        Pool = new CharacterPool(_movingCharacterPrefab);
         audio = GetComponent<AudioSource>();
         StartNewLevel();
     }
@@ -65,7 +67,10 @@ public class GameManager : MonoBehaviour
     {
         foreach (var character in SpawnedCharacters)
         {
-            character.UpdatePosition();
+            if (character.IsActive)
+            {
+                character.UpdatePosition();
+            }
         }
     }
 }

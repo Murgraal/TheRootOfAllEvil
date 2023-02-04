@@ -15,7 +15,7 @@ public class CharacterSlider : MonoBehaviour
         _duration = duration;
     }
 
-    public float GetT(float startTime) => (startTime + _duration - Time.time) / _duration;
+    public float GetT(float startTime) => 1 - ((startTime + _duration - Time.time) / _duration);
 
     public bool HasReachedEnd(float startTime)
     {

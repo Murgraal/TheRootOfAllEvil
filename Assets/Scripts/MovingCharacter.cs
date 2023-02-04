@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class MovingCharacter : MonoBehaviour
 {
@@ -7,16 +8,22 @@ public class MovingCharacter : MonoBehaviour
     public static event Action<MovingCharacterData> OnEnterHitZone;
     public static event Action<MovingCharacterData> OnExitHitZone;
 
+    public bool IsActive;
     private bool _isInHitZone;
+    [SerializeField]
+    private TMP_Text keyText;
 
     public void Init(MovingCharacterData data)
     {
         this.data = data;
         _isInHitZone = false;
+        keyText.text = this.data.Letter.ToString();
     }
 
     public void UpdatePosition()
     {
+        if (!IsActive) return;
+
         var sliderSystem = Main.GameManager.SliderSystem;
         var slider = sliderSystem.GetSliderByIndex(data.sliderIndex);
         var distanceTraveled = slider.GetT(data.startTime);
@@ -28,9 +35,9 @@ public class MovingCharacter : MonoBehaviour
             EnterHitZone();
         else if (!sliderSystem.IsInHitZone(distanceTraveled) && _isInHitZone)
             ExitHitZone();
-        if (slider.HasReachedEnd(distanceTraveled))
+        if (distanceTraveled >= 1)
         {
-            Debug.Log("Reached End");
+            Main.GameManager.Pool.Release(this);
         }
     }
 
