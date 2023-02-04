@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
+    public float audioDelayTimer;
+    public float audioStartDelayTime;
+
     private void Start()
     {
         CharacterSpawner.StartSpawning();
@@ -45,12 +48,17 @@ public class GameManager : MonoBehaviour
         CurrentLevel = new Level(levels[Random.Range(0, levels.Count)]);
         audio.loop = true;
         audio.clip = CurrentLevel.Data.Track;
-        audio.Play();
     }
 
     private void Update()
     {
-        if (CurrentLevel == null) return; 
+        if (CurrentLevel == null) return;
+
+        audioDelayTimer += Time.deltaTime;
+        if (audioDelayTimer >= audioStartDelayTime && !audio.isPlaying)
+        {
+            audio.Play();
+        }
         
         CurrentLevel.ProgressLevel(Time.deltaTime);
         foreach (var key in Data.PolledKeycodes)
