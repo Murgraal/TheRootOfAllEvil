@@ -65,18 +65,20 @@ public static class Main
         Data.CharacterQueue = GenerateWordQueue();
         Data.ResultData = new List<char>(Data.GeneratedCharacterData.Count);
         
-        for (int i = 0; i < Data.ResultData.Count; i++)
+        for (int i = 0; i < Data.GeneratedCharacterData.Count; i++)
         {
             if (Data.PolledKeycodes.Contains(Data.GeneratedCharacterData[i].ValidKey)) continue;
-
-            Data.ResultData[i] = Data.GeneratedCharacterData[i].Letter;
+            Data.ResultData.Add(Data.GeneratedCharacterData[i].Letter);
         }
         
         GameManager.OnKeyPressed += OnKeyPressed;
         
+        
         GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
         UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
         GameplayGraphics = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(GameplayGraphicsPath));
+
+        Data.GamePlay.Health = StartHealth;
     }
 
     public static void OnKeyPressed(KeyCode keyCode)

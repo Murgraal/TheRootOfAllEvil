@@ -280,6 +280,8 @@ MonoBehaviour:
   _movingCharacterPrefab: {fileID: -6177627351398693827, guid: 3b30574360415c84cb924f2fff99b603, type: 3}
   LevelDatas:
   - {fileID: 11400000, guid: 8219f727b318e49698aecd781780d63b, type: 2}
+  - {fileID: 11400000, guid: 7ea53f7ea29b2413487d1f78f8b11208, type: 2}
+  - {fileID: 11400000, guid: 8dc400e002ebc4ce4b74637be930e8bb, type: 2}
 --- !u!82 &7687600609160496657
 AudioSource:
   m_ObjectHideFlags: 0

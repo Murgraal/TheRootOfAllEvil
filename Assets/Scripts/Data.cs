@@ -14,8 +14,8 @@ public static class Data
     
     public static class GamePlay
     {
-        public static int Level;
-        public static int Health;
+        public static int Level = 1;
+        public static int Health = 100;
         public static List<MovingCharacterData> MovingCharactersInHitZone = new List<MovingCharacterData>();
     }
 
