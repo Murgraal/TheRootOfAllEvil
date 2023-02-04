@@ -118,11 +118,13 @@ public static class Main
 
     public static void OnEnterHitZone(MovingCharacterData data)
     {
+        Debug.Log(data.Letter + "entered");
         Data.GamePlay.MovingCharactersInHitZone.Add(data);
     }
 
     public static void OnExitHitZone(MovingCharacterData data)
     {
+        Debug.Log(data.Letter + "exited");
         Data.GamePlay.MovingCharactersInHitZone.Remove(data);
     }
     
@@ -155,7 +157,7 @@ public static class Main
         }
 
         result = result.Where(x => Data.PolledKeycodes.Contains(x.ValidKey)).ToList();
-        result.ForEach(x => Debug.Log(x.Letter));
+        //result.ForEach(x => Debug.Log(x.Letter));
         return new Queue<MovingCharacterData>(result);
     }
 

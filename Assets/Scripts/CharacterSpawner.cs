@@ -7,7 +7,7 @@ public class CharacterSpawner : MonoBehaviour
 
     public void StartSpawning()
     {
-        Level.SpawnBeat += SpawnTick;
+        Level.SpawnBeat += SpawnCharacter;
         _isActive = true;
     }
 
@@ -15,18 +15,12 @@ public class CharacterSpawner : MonoBehaviour
     {
         _isActive = false;
     }
-
-    public void SpawnTick()
+    
+    private void SpawnCharacter()
     {
         if (!_isActive)
             return;
-
-        SpawnCharacter("");
-
-    }
-
-    private void SpawnCharacter(string characterData)
-    {
+        
         var nextLetter = Main.GetLetterFromQueue();
 
         if (nextLetter == null)
@@ -40,7 +34,7 @@ public class CharacterSpawner : MonoBehaviour
         spawnedCharacter.Init(nextLetter);
         spawnedCharacter.data.startTime = Time.time;
 
-        Debug.Log(spawnedCharacter.data.sliderIndex + " : " + spawnedCharacter.data.Letter);
+//        Debug.Log(spawnedCharacter.data.sliderIndex + " : " + spawnedCharacter.data.Letter);
 
         Main.GameManager.SpawnedCharacters.Add(spawnedCharacter);
     }

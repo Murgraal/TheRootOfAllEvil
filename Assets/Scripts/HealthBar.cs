@@ -26,6 +26,7 @@ public class HealthBar : MonoBehaviour
     void Refresh()
     {
         if (bar == null) return;
-        bar.fillAmount = Data.GamePlay.Health / Main.StartHealth * 100f;
+        Debug.Log(Data.GamePlay.Health);
+        bar.fillAmount = (float)Data.GamePlay.Health / Main.StartHealth;
     }
 }
