@@ -64,8 +64,8 @@ public static class Main
         Data.ResultData = new List<char>(Data.GeneratedCharacterData.Count);
         GameManager.OnKeyPressed += OnKeyPressed;
         
-        GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
-        UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
+        //GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
+        //UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
     }
 
     public static void OnKeyPressed(KeyCode keyCode)
