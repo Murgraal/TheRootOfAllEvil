@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static event Action<KeyCode> OnKeyPressed;
     public CharacterSpawner CharacterSpawner;
 
-    public List<MovingCharacter> spawnedCharacters;
+    public List<MovingCharacter> SpawnedCharacters;
 
     public CharacterSliderSystem SliderSystem;
 
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateCharacters()
     {
-        foreach (var character in spawnedCharacters)
+        foreach (var character in SpawnedCharacters)
         {
             character.UpdatePosition();
         }

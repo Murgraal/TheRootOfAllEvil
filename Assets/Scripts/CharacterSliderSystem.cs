@@ -9,16 +9,16 @@ public class CharacterSliderSystem : MonoBehaviour
     private float _hitZoneEnd;
 
     [SerializeField]
-    private float noteDuration;
+    private float _noteDuration;
 
     [SerializeField]
     private CharacterSlider[] _characterSliders;
 
     public void Init()
     {
-        _characterSliders[0].Init(5f, noteDuration);
-        _characterSliders[2].Init(5f, noteDuration);
-        _characterSliders[1].Init(5f, noteDuration);
+        _characterSliders[0].Init(5f, _noteDuration);
+        _characterSliders[2].Init(5f, _noteDuration);
+        _characterSliders[1].Init(5f, _noteDuration);
     }
 
     public bool IsInHitZone(float t)

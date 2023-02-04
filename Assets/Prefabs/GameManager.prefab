@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitZoneStart: 0.8
   _hitZoneEnd: 1
-  noteDuration: 0.2
+  _noteDuration: 2
   _characterSliders:
   - {fileID: 7195335393873892497}
   - {fileID: 2372456301668731098}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSpawner: {fileID: 8554395524157152650}
-  spawnedCharacters: []
+  SpawnedCharacters: []
   SliderSystem: {fileID: 3135875749580993048}
   LevelDatas:
   - {fileID: 11400000, guid: 8219f727b318e49698aecd781780d63b, type: 2}

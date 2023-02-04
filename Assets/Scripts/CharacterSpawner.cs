@@ -5,14 +5,11 @@ public class CharacterSpawner : MonoBehaviour
     [SerializeField]
     private MovingCharacter _movingCharacterPrefab;
 
-    [SerializeField]
-    private float _spawnTempo;
-    private float _lastSpawnTime;
     private bool _isActive = false;
 
     public void StartSpawning()
     {
-        _lastSpawnTime = Time.time;
+        Level.SpawnBeat += SpawnTick;
         _isActive = true;
     }
 
@@ -26,10 +23,8 @@ public class CharacterSpawner : MonoBehaviour
         if (!_isActive)
             return;
 
-        if (_lastSpawnTime + _spawnTempo < Time.time)
-        {
-            SpawnCharacter("");
-        }
+        SpawnCharacter("");
+
     }
 
     private void SpawnCharacter(string characterData)
@@ -49,8 +44,7 @@ public class CharacterSpawner : MonoBehaviour
 
         Debug.Log(spawnedCharacter.data.sliderIndex + " : " + spawnedCharacter.data.Letter);
 
-        Main.GameManager.spawnedCharacters.Add(spawnedCharacter);
-        _lastSpawnTime = Time.time;
+        Main.GameManager.SpawnedCharacters.Add(spawnedCharacter);
     }
 }
 
