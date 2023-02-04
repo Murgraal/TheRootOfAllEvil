@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.GameCenter;
@@ -91,7 +92,7 @@ public static class Main
 
     public static void OnKeyPressed(KeyCode keyCode)
     {
-        if (Data.GamePlay.MovingCharactersInHitZone.Count == 0)
+        if (ShouldDamage(keyCode))
         {
             if (Data.GamePlay.Health <= 0)
             {
@@ -111,10 +112,19 @@ public static class Main
                     Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                     Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
                 }
-                
             }
         }
         OnHealthChanged?.Invoke();
+    }
+
+    public static bool ShouldDamage(KeyCode key)
+    {
+        foreach (var data in Data.GamePlay.MovingCharactersInHitZone)
+        {
+            if (key == data.ValidKey)
+                return false;
+        }
+        return true;
     }
 
     public static MovingCharacterData GetLetterFromQueue()
