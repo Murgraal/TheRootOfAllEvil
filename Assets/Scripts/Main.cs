@@ -133,7 +133,6 @@ public static class Main
         return new Queue<MovingCharacterData>(result);
     }
 
-    public static SliderIndex GetSliderIndexFromKey(KeyCode key)
     public static int GetHealthBasedOnYPos(float movingCharacterYPos)
     {
         var distance = Mathf.Abs(movingCharacterYPos - GameManager.LineYPos);
@@ -149,7 +148,7 @@ public static class Main
         return 0;
     }
 
-    public static int GetSliderIndexFromKey(KeyCode key)
+    public static SliderIndex GetSliderIndexFromKey(KeyCode key)
     {
         for (int i = 0; i < Data.KeyBoardLayout.Count; i++)
         {
