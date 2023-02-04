@@ -93,12 +93,12 @@ public static class Main
     {
         if (Data.GamePlay.MovingCharactersInHitZone.Count == 0)
         {
-            Data.GamePlay.Health -= DamagePerMissedLetter;
-
             if (Data.GamePlay.Health <= 0)
             {
                 Debug.Log("You play shit. You loose : - DDDDDDDD");
+                return;
             }
+            Data.GamePlay.Health -= DamagePerMissedLetter;
         }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
@@ -108,9 +108,10 @@ public static class Main
                 if (hitCharacter != null)
                 {
                     GameManager.Pool.Release(hitCharacter);
+                    Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
+                    Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
                 }
-                Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
-                Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
+                
             }
         }
         OnHealthChanged?.Invoke();
