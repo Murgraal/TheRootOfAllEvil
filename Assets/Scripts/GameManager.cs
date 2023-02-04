@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
     public float audioDelayTimer;
-    public float audioStartDelayTime;
+    public float audioStartDelayTime => SliderSystem.NoteDuration * SliderSystem.HitZoneStart;
 
     private void Start()
     {
