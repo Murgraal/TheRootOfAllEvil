@@ -1,18 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class ResultsTable : MonoBehaviour
 {
     [SerializeField]
-    private Image bar;
-
-    private void Awake()
-    {
-    }
-
+    private TextMeshProUGUI text;
     private void OnEnable()
     {
         Main.OnHealthChanged += Refresh;
@@ -25,7 +19,7 @@ public class HealthBar : MonoBehaviour
 
     void Refresh()
     {
-        if (bar == null) return;
-        bar.fillAmount = Data.GamePlay.Health / Main.StartHealth * 100f;
+        if (text == null) return;
+        text.text = Data.ResultData.ToString();
     }
 }

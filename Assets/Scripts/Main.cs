@@ -13,6 +13,7 @@ public static class Main
     public const string GameManagerPath = PrefabPath + "GameManager.prefab";
     public const string SourceTextPath = "/Texts/";
     public const string UIPrefabPath = PrefabPath + "UI.prefab";
+    public const string GameplayGraphicsPath = PrefabPath + "GameplayGraphics.prefab";
 
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
@@ -34,6 +35,7 @@ public static class Main
     
     public static GameManager GameManager;
     public static GameObject UI;
+    public static GameObject GameplayGraphics;
     
     [RuntimeInitializeOnLoadMethod]
     public static void Init()
@@ -74,6 +76,7 @@ public static class Main
         
         GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
         UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
+        GameplayGraphics = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(GameplayGraphicsPath));
     }
 
     public static void OnKeyPressed(KeyCode keyCode)
