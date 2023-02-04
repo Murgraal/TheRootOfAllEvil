@@ -49,10 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitZoneTopRenderer: {fileID: 1021211762894317914}
   _hitZoneBottomRenderer: {fileID: 1234371527443304047}
-  _hitZoneStart: 0.7
-  _hitZoneEnd: 0.86
+  HitZoneStart: 0.8
+  HitZoneEnd: 0.9
+  NoteDuration: 2
   _sliderLength: 9
-  _noteDuration: 2
   _characterSliders:
   - {fileID: 7195335393873892497}
   - {fileID: 2372456301668731098}
@@ -281,7 +281,6 @@ MonoBehaviour:
   LevelDatas:
   - {fileID: 11400000, guid: 8219f727b318e49698aecd781780d63b, type: 2}
   audioDelayTimer: 0
-  audioStartDelayTime: 1.5
 --- !u!82 &7687600609160496657
 AudioSource:
   m_ObjectHideFlags: 0

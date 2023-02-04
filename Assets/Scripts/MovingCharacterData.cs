@@ -11,7 +11,6 @@ public class MovingCharacterData
             Debug.LogWarning($"Failed to parse keycode {Letter}");
         }
         positionInString = index;
-        startTime = Time.time;
         sliderIndex = Main.GetSliderIndexFromKey(ValidKey);
     }
 
