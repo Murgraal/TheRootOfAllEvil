@@ -32,6 +32,7 @@ public class Level
             if (timer > beatHits[i])
             {
                 SpawnBeat?.Invoke();
+                beatsSpawned++;
             }
         }
     }

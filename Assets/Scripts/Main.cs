@@ -16,7 +16,6 @@ public static class Main
 
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
-
     public static event Action OnHealthChanged; 
 
     public static float[] HealthRewardDistanceTresholds = new[]
@@ -59,13 +58,22 @@ public static class Main
         }
 
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
+        
         if (Data.GeneratedCharacterData == null) return;
         Data.CharacterQueue = GenerateWordQueue();
         Data.ResultData = new List<char>(Data.GeneratedCharacterData.Count);
+        
+        for (int i = 0; i < Data.ResultData.Count; i++)
+        {
+            if (Data.PolledKeycodes.Contains(Data.GeneratedCharacterData[i].ValidKey)) continue;
+
+            Data.ResultData[i] = Data.GeneratedCharacterData[i].Letter;
+        }
+        
         GameManager.OnKeyPressed += OnKeyPressed;
         
-        //GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
-        //UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
+        GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
+        UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
     }
 
     public static void OnKeyPressed(KeyCode keyCode)
