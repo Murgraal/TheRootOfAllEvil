@@ -15,6 +15,7 @@ public static class Main
     public const string SourceTextPath = "/Texts/";
     public const string UIPrefabPath = PrefabPath + "UI.prefab";
     public const string GameplayGraphicsPath = PrefabPath + "GameplayGraphics.prefab";
+    public const string MenuPrefabPath = PrefabPath + "MenuCanvas.prefab";
 
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
@@ -35,8 +36,9 @@ public static class Main
     };
     
     public static GameManager GameManager;
-    public static GameObject UI;
+    public static GameObject GameplayUI;
     public static GameObject GameplayGraphics;
+    public static Menu Menu;
     
     [RuntimeInitializeOnLoadMethod]
     public static void Init()
@@ -81,12 +83,16 @@ public static class Main
         }
         
         GameManager.OnKeyPressed += OnKeyPressed;
-        
-        
-        GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
-        UI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
-        GameplayGraphics = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(GameplayGraphicsPath));
 
+        Menu = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<Menu>(MenuPrefabPath));
+    }
+
+    public static void StartGame()
+    {
+        GameplayUI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
+        GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
+        GameplayGraphics = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(GameplayGraphicsPath));
+        Menu.gameObject.SetActive(false);
         Data.GamePlay.Health = StartHealth;
     }
 
