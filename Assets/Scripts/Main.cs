@@ -168,19 +168,17 @@ public static class Main
     public static Queue<MovingCharacterData> GenerateWordQueue()
     {
         var result = new List<MovingCharacterData>();
-        var charData = GenerateCharacterData(Data.GamePlay.Level);
-        var counter = charData.Count;
+        var charData = GenerateCharacterData(Data.GamePlay.Level).Where(x => Data.PolledKeycodes.Contains(x.ValidKey)).ToList();
 
-        for (int i = charData.Count - 1; i > 0; i--)
+        for (int i = charData.Count -1; i >= 0; i--)
         {
-            var randomIndex = UnityEngine.Random.Range(0, counter);
+            var randomIndex = UnityEngine.Random.Range(0,i + 1);
             var randomChar = charData[randomIndex];
             result.Add(randomChar);
+            charData[randomIndex] = charData[i];
             charData[i] = randomChar;
-            counter--;
         }
-
-        result = result.Where(x => Data.PolledKeycodes.Contains(x.ValidKey)).ToList();
+        
         //result.ForEach(x => Debug.Log(x.Letter));
         return new Queue<MovingCharacterData>(result);
     }

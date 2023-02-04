@@ -46,7 +46,7 @@ public class MovingCharacter : MonoBehaviour
 
     public void EnterHitZone()
     {
-        Debug.Log("In hit zone");
+        //Debug.Log("In hit zone");
         _isInHitZone = true;
         OnEnterHitZone?.Invoke(data);
     }
