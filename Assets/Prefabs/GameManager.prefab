@@ -103,6 +103,8 @@ MonoBehaviour:
   CharacterSpawner: {fileID: 8554395524157152650}
   spawnedCharacters: []
   SliderSystem: {fileID: 3135875749580993048}
+  LevelDatas:
+  - {fileID: 11400000, guid: 8219f727b318e49698aecd781780d63b, type: 2}
 --- !u!1001 &844004298073941668
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,12 +9,14 @@ public class Level
     public static event Action SpawnBeat;
     private List<float> beatHits;
     private AudioClip track;
-    
+
+    public LevelData Data { get; private set; }
     
     public Level(LevelData data)
     {
         beatHits = new List<float>(data.BeatHit);
         track = data.Track;
+        Data = data;
     }
     
     public void ProgressLevel(float delta)
@@ -23,7 +25,7 @@ public class Level
 
         if (timer >= track.length)
         {
-            StartLevel();
+            ResetSession();
         }
         for (int i = beatsSpawned; i < beatHits.Count; i++)
         {
@@ -34,7 +36,7 @@ public class Level
         }
     }
 
-    public void StartLevel()
+    public void ResetSession()
     {
         timer = 0;
         beatsSpawned = 0;
