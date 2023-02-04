@@ -12,6 +12,7 @@ public class CharacterSliderSystem : MonoBehaviour
     public float HitZoneStart;
     [Range(0,1)]
     public float HitZoneEnd;
+    [Range(0.1f, 10f)]
     public float NoteDuration;
 
     [SerializeField]
