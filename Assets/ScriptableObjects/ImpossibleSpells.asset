@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbd1228e7538b43cfa79b1aee5e4b516, type: 3}
-  m_Name: AdvancedSpells 1
+  m_Name: ImpossibleSpells
   m_EditorClassIdentifier: 
   BeatHit: []
   Track: {fileID: 8300000, guid: e3100fde594c741e986fcfbc5158a8e2, type: 3}

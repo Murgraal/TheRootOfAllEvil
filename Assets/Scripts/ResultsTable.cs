@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,12 @@ public class ResultsTable : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
+
+    private void Start()
+    {
+        Refresh();
+    }
+
     private void OnEnable()
     {
         Main.OnHealthChanged += Refresh;
@@ -20,6 +27,6 @@ public class ResultsTable : MonoBehaviour
     void Refresh()
     {
         if (text == null) return;
-        text.text = Data.ResultData.ToString();
+        text.text = new string(Data.ResultData.ToArray());
     }
 }
