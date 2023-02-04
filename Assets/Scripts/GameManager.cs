@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         CharacterSpawner.StartSpawning();
         SliderSystem.Init();
         audio = GetComponent<AudioSource>();
-        StartNewLevel();
     }
 
     public void StartNewLevel()

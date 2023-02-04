@@ -11,15 +11,12 @@ using UnityEngine.SocialPlatforms.GameCenter;
 
 public static class Main
 {
-    public const string PrefabPath = "Assets/Prefabs/";
-    public const string GameManagerPath = PrefabPath + "GameManager.prefab";
-    public const string SourceTextPath = "/Texts/";
-    public const string UIPrefabPath = PrefabPath + "UI.prefab";
-    public const string GameplayGraphicsPath = PrefabPath + "GameplayGraphics.prefab";
-    public const string MenuPrefabPath = PrefabPath + "MenuCanvas.prefab";
-
+    public static string SourceTextPath = "/Texts/";
+    
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
+
+    public static PrefabContainer PrefabContainer;
     public static event Action OnHealthChanged; 
 
     public static float[] HealthRewardDistanceTresholds = new[]
@@ -41,13 +38,12 @@ public static class Main
     public static GameObject GameplayGraphics;
     public static Menu Menu;
     
-    [RuntimeInitializeOnLoadMethod]
     public static void Init()
     {
         MovingCharacter.OnEnterHitZone += OnEnterHitZone;
         MovingCharacter.OnExitHitZone += OnExitHitZone;
-
-        var path = Application.dataPath + SourceTextPath;
+        
+        var path = Application.streamingAssetsPath + SourceTextPath;
         Debug.Log(path);
         var files = Directory.GetFiles(path);
         
@@ -66,6 +62,7 @@ public static class Main
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
         
         if (Data.GeneratedCharacterData == null) return;
+        
         Data.CharacterQueue = GenerateWordQueue();
         Data.ResultData = new List<char>(Data.GeneratedCharacterData.Count);
         
@@ -84,17 +81,25 @@ public static class Main
         Data.CharacterQueue.ToList().ForEach(x => Debug.Log(x.Letter));
         
         GameManager.OnKeyPressed += OnKeyPressed;
+        
+        Menu = GameObject.FindObjectOfType<Menu>();
+        GameplayUI = GameObject.Find("UI");
+        GameManager = GameObject.FindObjectOfType<GameManager>();
+        GameplayGraphics = GameObject.Find("GameplayGraphics");
 
-        Menu = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<Menu>(MenuPrefabPath));
+        GameplayUI.SetActive(false);
+        GameplayGraphics.SetActive(false);
+        GameManager.gameObject.SetActive(false);
     }
 
     public static void StartGame()
     {
-        GameplayUI = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(UIPrefabPath));
-        GameManager = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameManager>(GameManagerPath));
-        GameplayGraphics = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(GameplayGraphicsPath));
+        GameplayUI.SetActive(true);
+        GameplayGraphics.SetActive(true);
         Menu.gameObject.SetActive(false);
+        GameManager.gameObject.SetActive(true);
         Data.GamePlay.Health = StartHealth;
+        GameManager.StartNewLevel();
     }
 
     public static void OnKeyPressed(KeyCode keyCode)

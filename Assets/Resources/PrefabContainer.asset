@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc387282bd44c4c00aadb7570ccb6090, type: 3}
+  m_Name: PrefabContainer
+  m_EditorClassIdentifier: 
+  GameManagerPrefab: {fileID: 2169682915820217737, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
+  MenuPrefab: {fileID: 4814081058906715315, guid: 2156fb5b554954d4ea6e0945319165ea, type: 3}
+  UIPrefab: {fileID: 6605240611418436300, guid: a7552246fa3be4f5dbe79f7861c5f4d8, type: 3}
+  GameplayGraphicsPrefab: {fileID: 7262124802891916917, guid: 5dffa15d49fdf4e6b9f0bfbe236854d1, type: 3}
