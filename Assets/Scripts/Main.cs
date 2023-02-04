@@ -67,8 +67,16 @@ public static class Main
         
         for (int i = 0; i < Data.GeneratedCharacterData.Count; i++)
         {
-            if (Data.PolledKeycodes.Contains(Data.GeneratedCharacterData[i].ValidKey)) continue;
-            Data.ResultData.Add(Data.GeneratedCharacterData[i].Letter);
+            if (Data.PolledKeycodes.Contains(Data.GeneratedCharacterData[i].ValidKey))
+            {
+                Data.ResultData.Add(' ');
+            }
+            else
+            {
+                Data.ResultData.Add(Data.GeneratedCharacterData[i].Letter);
+            }
+            
+            
         }
         
         GameManager.OnKeyPressed += OnKeyPressed;
@@ -99,7 +107,7 @@ public static class Main
                 var hitCharacter = GameManager.SpawnedCharacters.FirstOrDefault(x => x.data == keyinhitzone);
                 if (hitCharacter != null)
                 {
-                    GameObject.Destroy(hitCharacter.gameObject);
+                    GameManager.Pool.Release(hitCharacter);
                 }
                 Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                 Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
@@ -118,13 +126,11 @@ public static class Main
 
     public static void OnEnterHitZone(MovingCharacterData data)
     {
-        Debug.Log(data.Letter + "entered");
         Data.GamePlay.MovingCharactersInHitZone.Add(data);
     }
 
     public static void OnExitHitZone(MovingCharacterData data)
     {
-        Debug.Log(data.Letter + "exited");
         Data.GamePlay.MovingCharactersInHitZone.Remove(data);
     }
     
