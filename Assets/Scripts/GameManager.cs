@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     public CharacterSlider GetCharacterSlider(int index) => _characterSliders[index];
     private CharacterSlider[] _characterSliders;
+    private static Transform Line;
+
+    public static float LineYPos => Line == null ? 0 : Line.position.y;
     
     private void Start()
     {
