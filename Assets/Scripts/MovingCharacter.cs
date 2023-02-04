@@ -20,6 +20,7 @@ public class MovingCharacter : MonoBehaviour
         var slider = Main.GameManager.CharacterSpawner.GetSliderByIndex(data.sliderIndex);
 
         transform.position = slider.GetPosByTime(data.startTime);
+        data.yPos = transform.position.y;
 
         if (slider.IsInHitZone(transform.position) && !_isInHitZone)
             EnterHitZone();

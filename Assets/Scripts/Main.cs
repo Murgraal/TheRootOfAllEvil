@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,24 @@ public static class Main
 {
     public const string GameManagerPath = "Assets/Prefabs/GameManager.prefab";
     public const string SourceTextPath = "/Texts/";
+
+    public const int DamagePerMissedLetter = 5;
+    public const int StartHealth = 100;
+
+    public static float[] HealthRewardDistanceTresholds = new[]
+    {
+        0.1f,
+        0.2f,
+        0.3f
+    };
+    
+    public static int[] HealthRewardsPerTreshold = new[]
+    {
+        1,
+        2,
+        3
+    };
+    
     public static GameManager GameManager;
     
     [RuntimeInitializeOnLoadMethod]
@@ -45,11 +64,21 @@ public static class Main
 
     public static void OnKeyPressed(KeyCode keyCode)
     {
+        if (Data.GamePlay.MovingCharactersInHitZone.Count == 0)
+        {
+            Data.GamePlay.Health -= DamagePerMissedLetter;
+
+            if (Data.GamePlay.Health <= 0)
+            {
+                Debug.Log("You play shit. You loose : - DDDDDDDD");
+            }
+        }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
             if (keyinhitzone.ValidKey == keyCode)
             {
                 Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
+                Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
             }
         }
     }
@@ -105,6 +134,22 @@ public static class Main
     }
 
     public static SliderIndex GetSliderIndexFromKey(KeyCode key)
+    public static int GetHealthBasedOnYPos(float movingCharacterYPos)
+    {
+        var distance = Mathf.Abs(movingCharacterYPos - GameManager.LineYPos);
+
+        for (int i = 0; i < HealthRewardDistanceTresholds.Length; i++)
+        {
+            if (distance < HealthRewardDistanceTresholds[i])
+            {
+                return HealthRewardsPerTreshold[i];
+            }
+        }
+
+        return 0;
+    }
+
+    public static int GetSliderIndexFromKey(KeyCode key)
     {
         for (int i = 0; i < Data.KeyBoardLayout.Count; i++)
         {
