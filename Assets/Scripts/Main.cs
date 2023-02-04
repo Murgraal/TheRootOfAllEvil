@@ -91,6 +91,11 @@ public static class Main
         {
             if (keyinhitzone.ValidKey == keyCode)
             {
+                var hitCharacter = GameManager.SpawnedCharacters.FirstOrDefault(x => x.data == keyinhitzone);
+                if (hitCharacter != null)
+                {
+                    GameObject.Destroy(hitCharacter.gameObject);
+                }
                 Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                 Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
             }
