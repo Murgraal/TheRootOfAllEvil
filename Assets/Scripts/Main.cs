@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SocialPlatforms.GameCenter;
 
 public static class Main
@@ -78,9 +79,9 @@ public static class Main
             {
                 Data.ResultData.Add(Data.GeneratedCharacterData[i].Letter);
             }
-            
-            
         }
+        
+        Data.CharacterQueue.ToList().ForEach(x => Debug.Log(x.Letter));
         
         GameManager.OnKeyPressed += OnKeyPressed;
 
