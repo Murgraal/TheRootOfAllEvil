@@ -180,7 +180,7 @@ public static class Main
 
     public static int GetHealthBasedOnYPos(float movingCharacterYPos)
     {
-        var distance = Mathf.Abs(movingCharacterYPos - GameManager.LineYPos);
+        var distance = Mathf.Abs(movingCharacterYPos - GameManager.SliderSystem.HitZoneStart);
 
         for (int i = 0; i < HealthRewardDistanceTresholds.Length; i++)
         {
