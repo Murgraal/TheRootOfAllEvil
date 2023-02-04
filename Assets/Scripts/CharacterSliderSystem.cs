@@ -38,7 +38,7 @@ public class CharacterSliderSystem : MonoBehaviour
 
     public bool IsInHitZone(float t)
     {
-        return t < _hitZoneStart && t > _hitZoneEnd;
+        return t > _hitZoneStart && t < _hitZoneEnd;
     }
 
     public CharacterSlider GetSliderByIndex(SliderIndex index) => _characterSliders[(int)index];
