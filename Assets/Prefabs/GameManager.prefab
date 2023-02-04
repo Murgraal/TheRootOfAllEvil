@@ -281,7 +281,7 @@ MonoBehaviour:
   LevelDatas:
   - {fileID: 11400000, guid: 8219f727b318e49698aecd781780d63b, type: 2}
   audioDelayTimer: 0
-  audioStartDelayTime: 2
+  audioStartDelayTime: 1.5
 --- !u!82 &7687600609160496657
 AudioSource:
   m_ObjectHideFlags: 0
