@@ -174,6 +174,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1367167392401961118, guid: 5dffa15d49fdf4e6b9f0bfbe236854d1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367167392401961118, guid: 5dffa15d49fdf4e6b9f0bfbe236854d1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f64721afc0df343d195157afac43cf41, type: 2}
+    - target: {fileID: 1818077576676836981, guid: 5dffa15d49fdf4e6b9f0bfbe236854d1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0c9bc7e6a7c648a382247341e47dfcf, type: 3}
     - target: {fileID: 7262124802891916917, guid: 5dffa15d49fdf4e6b9f0bfbe236854d1, type: 3}
       propertyPath: m_Name
       value: GameplayGraphics
