@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         CharacterSpawner.CharacterSpawned += AddSpawnedCharacter;
-        Main.OnSucessfulHit += EffectSpawner.SpawnEffect;
         Main.OnSucessfulHit += PlaySfx;
         Main.OnSucessfulHit += EffectSpawner.SpawnHitEffect;
     }
