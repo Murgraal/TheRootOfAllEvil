@@ -60,6 +60,7 @@ public static class Main
         }
         
         GameManager.OnKeyPressed += OnKeyPressed;
+        LoadScene("MainMenu");
     }
 
     public static void LoadScene(string sceneName)
