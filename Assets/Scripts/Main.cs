@@ -15,7 +15,7 @@ public static class Main
     public const int StartHealth = 100;
     public static event Action OnHealthChanged;
     public static event Action OnScoreChanged;
-    public static event Action OnStreakChanged;
+    public static event Action<Vector3> OnStreakChanged;
     public static event Action<Vector3> OnSucessfulHit;
 
     public static float[] HealthRewardDistanceTresholds = new[]
@@ -122,11 +122,13 @@ public static class Main
         {
         	ReduceHealth();
             Data.GamePlay.Streak = 0;
-            EndStreak();
+            
             var missedKeyLaneIndex = Main.GetSliderIndexFromKey(keyCode);
             var missedSlider = GameManager.SliderSystem.GetSliderByIndex(missedKeyLaneIndex);
             var missEffectPos = missedSlider.GetPos(GameManager.SliderSystem.HitZoneStart);
+            EndStreak(missEffectPos);
             GameManager.EffectSpawner.SpawnMissEffect(missEffectPos);
+            GameManager.PlayMissSfx();
             
         }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
@@ -142,8 +144,8 @@ public static class Main
                     Data.GamePlay.ScoreMultiplier = (float)Math.Min(1.0 + 0.5 * (Data.GamePlay.Streak / 10), 6.66);
                     Data.GamePlay.MultiplierLevel = GetMultiplierLevel();
                     Data.GamePlay.Score += (int)(10 * Data.GamePlay.ScoreMultiplier);
-                    OnSucessfulHit?.Invoke(hitCharacter.transform.position);
-                    IncrementStreak();
+                    //OnSucessfulHit?.Invoke(hitCharacter.transform.position);
+                    IncrementStreak(hitCharacter.transform.position);
                     OnScoreChanged?.Invoke();
                 }
             }
@@ -178,15 +180,15 @@ public static class Main
         Data.GamePlay.MovingCharactersInHitZone.Remove(data);
     }
 
-    public static void EndStreak()
+    public static void EndStreak(Vector3 pos)
     {
         Data.GamePlay.Streak = 0;
-        OnStreakChanged?.Invoke();
+        OnStreakChanged?.Invoke(pos);
     }
-    public static void IncrementStreak()
+    public static void IncrementStreak(Vector3 pos)
     {
         Data.GamePlay.Streak++;
-        OnStreakChanged?.Invoke();
+        OnStreakChanged?.Invoke(pos);
     }
 
     public static List<MovingCharacterData> GenerateCharacterData(int level)

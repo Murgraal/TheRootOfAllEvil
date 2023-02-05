@@ -26,7 +26,7 @@ public class ScoreTracker : MonoBehaviour
             score.text += string.Format("{0:0.0}", Data.GamePlay.ScoreMultiplier);
         }
     }
-    public void RefreshStreak()
+    public void RefreshStreak(Vector3 pos)
     {
         var alpha = (float)Mathf.Min((float)(Data.GamePlay.Streak / 10f), 1f);
         streak.color = new Color(streak.color.r, streak.color.g, streak.color.b, alpha);

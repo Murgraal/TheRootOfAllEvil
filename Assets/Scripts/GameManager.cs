@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     private Level CurrentLevel;
 
     public AudioSource audio;
-    public AudioClip[] sfxClips;
+    public SfxMapping[] sfxClips;
+    public AudioClip missClip;
 
     public AudioSource[] audiosources;
     public AudioSource sfxSource;
@@ -53,9 +54,18 @@ public class GameManager : MonoBehaviour
         Data.GamePlay.SpawnedCharacters.Add(spawnedCharater);
     }
 
+    public void PlayMissSfx()
+    {
+        sfxSource.PlayOneShot(missClip);
+    }
+    
     private void PlaySfx(Vector3 pos)
     {
-        sfxSource.PlayOneShot(sfxClips[Random.Range(0,sfxClips.Length)]);
+        var sfx = sfxClips.FirstOrDefault(x => x.multiplierLevel == Data.GamePlay.MultiplierLevel);
+        if (sfx != null)
+        {
+            sfxSource.PlayOneShot(sfx.clip);  
+        }
     }
     
     private void Start()
@@ -89,5 +99,12 @@ public class GameManager : MonoBehaviour
                 OnKeyPressed?.Invoke(key);
             }
         }
+    }
+
+    [Serializable]
+    public class SfxMapping
+    {
+        public Data.MultiplierLevel multiplierLevel;
+        public AudioClip clip;
     }
 }

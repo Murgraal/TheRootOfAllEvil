@@ -208,6 +208,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2169682915820217737, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
+      propertyPath: missClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 97a1b1aece3ee45818cef2c634497808, type: 3}
+    - target: {fileID: 2169682915820217737, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
       propertyPath: sfxSource
       value: 
       objectReference: {fileID: 1324334890}
@@ -223,6 +227,14 @@ PrefabInstance:
       propertyPath: audiosources.Array.data[2]
       value: 
       objectReference: {fileID: 1889101608}
+    - target: {fileID: 3722628782039315062, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
+      propertyPath: _sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: d8c9654a109a05d46b1965d379be6f9f, type: 3}
+    - target: {fileID: 3722628782039315062, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
+      propertyPath: _sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 97ad6c3d3df5cf3408f72c3dc5a726bf, type: 3}
     - target: {fileID: 5782568515393372466, guid: fd4d9ea4dd3e2488fb3372c594b858be, type: 3}
       propertyPath: m_RootOrder
       value: 5

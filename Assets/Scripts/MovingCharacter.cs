@@ -49,7 +49,7 @@ public class MovingCharacter : MonoBehaviour
         if (distanceTraveled >= 1)
         {
             Main.ReduceHealth();
-            Main.EndStreak();
+            Main.EndStreak(transform.position);
             CharacterSpawner.DespawnCharacter(this,0f);
         }
     }

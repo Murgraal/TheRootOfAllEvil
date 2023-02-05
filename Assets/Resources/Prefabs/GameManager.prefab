@@ -285,11 +285,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8dc400e002ebc4ce4b74637be930e8bb, type: 2}
   audio: {fileID: 0}
   sfxClips:
-  - {fileID: 8300000, guid: f6431ccc09a2941b99ba838e988eb29d, type: 3}
-  - {fileID: 8300000, guid: ded7060eed8ca4ef9bcc5376540e1b55, type: 3}
-  - {fileID: 8300000, guid: 2a4801f20d0c04af8aef70818dd21a6f, type: 3}
-  - {fileID: 8300000, guid: 32ababa2b82b7433daedcbac67a6bb54, type: 3}
-  - {fileID: 8300000, guid: bbdce522e0b4e431390a6c3d6f26d81d, type: 3}
+  - multiplierLevel: 0
+    clip: {fileID: 8300000, guid: b01fd2f81d4fc4559899decd5fac1e2f, type: 3}
+  - multiplierLevel: 1
+    clip: {fileID: 8300000, guid: 2a4801f20d0c04af8aef70818dd21a6f, type: 3}
+  - multiplierLevel: 2
+    clip: {fileID: 8300000, guid: ded7060eed8ca4ef9bcc5376540e1b55, type: 3}
+  - multiplierLevel: 3
+    clip: {fileID: 8300000, guid: f6431ccc09a2941b99ba838e988eb29d, type: 3}
+  - multiplierLevel: 4
+    clip: {fileID: 8300000, guid: bbdce522e0b4e431390a6c3d6f26d81d, type: 3}
+  - multiplierLevel: 5
+    clip: {fileID: 8300000, guid: 32ababa2b82b7433daedcbac67a6bb54, type: 3}
   audiosources:
   - {fileID: 0}
   - {fileID: 0}
