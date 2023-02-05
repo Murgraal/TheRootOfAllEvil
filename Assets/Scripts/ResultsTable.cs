@@ -30,6 +30,8 @@ public class ResultsTable : MonoBehaviour
     {
         if (text == null) return;
         resultData = Data.ResultData;
-        text.text = new string(Data.ResultData.ToArray());
+        var resultText = new string(Data.ResultData.ToArray());
+        Debug.Log(resultText);
+        text.text = resultText;
     }
 }
