@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class Main
 {
@@ -30,15 +31,13 @@ public static class Main
     };
     
     public static GameManager GameManager;
-    public static GameObject GameplayUI;
-    public static GameObject GameplayGraphics;
-    public static Menu Menu;
+    
     
     public static void Init()
     {
         MovingCharacter.OnEnterHitZone += OnEnterHitZone;
         MovingCharacter.OnExitHitZone += OnExitHitZone;
-        
+
         var path = Application.streamingAssetsPath + SourceTextPath;
         Debug.Log(path);
         var files = Directory.GetFiles(path);
@@ -77,25 +76,17 @@ public static class Main
         Data.CharacterQueue.ToList().ForEach(x => Debug.Log(x.Letter));
         
         GameManager.OnKeyPressed += OnKeyPressed;
-        
-        Menu = GameObject.FindObjectOfType<Menu>();
-        GameplayUI = GameObject.Find("UI");
-        GameManager = GameObject.FindObjectOfType<GameManager>();
-        GameplayGraphics = GameObject.Find("GameplayGraphics");
+    }
 
-        GameplayUI.SetActive(false);
-        GameplayGraphics.SetActive(false);
-        GameManager.gameObject.SetActive(false);
+    public static void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public static void StartGame()
     {
-        GameplayUI.SetActive(true);
-        GameplayGraphics.SetActive(true);
-        Menu.gameObject.SetActive(false);
-        GameManager.gameObject.SetActive(true);
         Data.GamePlay.Health = StartHealth;
-        GameManager.StartNewLevel();
+        LoadScene("Gameplay");
     }
 
     public static void OnKeyPressed(KeyCode keyCode)

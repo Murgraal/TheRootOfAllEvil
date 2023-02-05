@@ -32,23 +32,32 @@ public class GameManager : MonoBehaviour
     public float audioDelayTimer;
     public float audioStartDelayTime;
 
+    private void OnEnable()
+    {
+        CharacterSpawner.CharacterSpawned += AddSpawnedCharacter;
+    }
+
+    private void OnDisable()
+    {
+        CharacterSpawner.CharacterSpawned -= AddSpawnedCharacter;
+    }
+
+    public void AddSpawnedCharacter(MovingCharacter spawnedCharater)
+    {
+        SpawnedCharacters.Add(spawnedCharater);
+    }
+
     private void Start()
     {
         CharacterSpawner.StartSpawning();
         SliderSystem.Init();
+        StartNewLevel();
     }
 
     public void StartNewLevel()
     {
-        var levels = new List<LevelData>(LevelDatas);
-        if (CurrentLevel != null)
-        {
-            levels.Remove(CurrentLevel.Data);
-        }
-        var random = Random.Range(0, levels.Count);
-        CurrentLevel = new Level(levels[random]);
-
-        audio = audiosources[random];
+        CurrentLevel = new Level(LevelDatas[Data.GamePlay.Level]);
+        audio = audiosources[Data.GamePlay.Level];
     }
 
     private void Update()

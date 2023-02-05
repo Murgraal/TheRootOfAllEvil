@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class CharacterSpawner : MonoBehaviour
     private MovingCharacter _keyPrefab;
 
     private bool _isActive = false;
+
+    public static event Action<MovingCharacter> CharacterSpawned;
 
     public void StartSpawning()
     {
@@ -38,7 +41,7 @@ public class CharacterSpawner : MonoBehaviour
 
 //        Debug.Log(spawnedCharacter.data.sliderIndex + " : " + spawnedCharacter.data.Letter);
 
-        Main.GameManager.SpawnedCharacters.Add(spawnedCharacter);
+        CharacterSpawned?.Invoke(spawnedCharacter);
     }
 
     public void DespawnCharacter(MovingCharacter character, float delay = 0)

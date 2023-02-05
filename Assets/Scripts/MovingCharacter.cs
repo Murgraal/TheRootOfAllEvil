@@ -12,6 +12,15 @@ public class MovingCharacter : MonoBehaviour
     [SerializeField]
     private TMP_Text keyText;
 
+    private CharacterSliderSystem sliderSystem;
+    private CharacterSpawner characterSpawner;
+
+    private void Start()
+    {
+        sliderSystem = FindObjectOfType<CharacterSliderSystem>();
+        characterSpawner = FindObjectOfType<CharacterSpawner>();
+    }
+
     public void Init(MovingCharacterData data)
     {
         this.data = data;
@@ -27,7 +36,6 @@ public class MovingCharacter : MonoBehaviour
 
     public void UpdatePosition()
     {
-        var sliderSystem = Main.GameManager.SliderSystem;
         var slider = sliderSystem.GetSliderByIndex(data.sliderIndex);
         var distanceTraveled = slider.GetT(data.startTime);
 
@@ -40,7 +48,7 @@ public class MovingCharacter : MonoBehaviour
             ExitHitZone();
         if (distanceTraveled >= 1)
         {
-            Main.GameManager.CharacterSpawner.DespawnCharacter(this);
+            characterSpawner.DespawnCharacter(this);
         }
     }
 

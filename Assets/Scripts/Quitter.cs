@@ -15,6 +15,6 @@ public class Quitter : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+            Main.LoadScene("MainMenu");
     }
 }
