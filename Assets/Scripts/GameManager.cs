@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     private Level CurrentLevel;
 
     public AudioSource audio;
+    public AudioClip sfxClip;
 
     public AudioSource[] audiosources;
+    public AudioSource[] sfxSources;
 
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
@@ -36,12 +38,14 @@ public class GameManager : MonoBehaviour
     {
         CharacterSpawner.CharacterSpawned += AddSpawnedCharacter;
         Main.OnSucessfulHit += EffectSpawner.SpawnEffect;
+        Main.OnSucessfulHit += PlaySfx;
     }
 
     private void OnDisable()
     {
         CharacterSpawner.CharacterSpawned -= AddSpawnedCharacter;
         Main.OnSucessfulHit -= EffectSpawner.SpawnEffect;
+        Main.OnSucessfulHit -= PlaySfx;
     }
 
     public void AddSpawnedCharacter(MovingCharacter spawnedCharater)
@@ -49,6 +53,11 @@ public class GameManager : MonoBehaviour
         Data.GamePlay.SpawnedCharacters.Add(spawnedCharater);
     }
 
+    private void PlaySfx(Vector3 pos)
+    {
+        sfxSources[Random.Range(0,sfxSources.Length)].PlayOneShot(sfxClip);
+    }
+    
     private void Start()
     {
         CharacterSpawner.StartSpawning();
