@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,7 +49,7 @@ public static class Main
         
         foreach (var file in files)
         {
-            if (file.Contains(".meta")) continue;
+            if (!file.Contains(".txt")) continue;
             var reader = new StreamReader(file);
             Data.SourceString.Add(reader.ReadToEnd());
         }
@@ -73,7 +74,7 @@ public static class Main
         if (Data.GeneratedCharacterData == null) return;
         
         Data.CharacterQueue = GenerateWordQueue();
-        Data.ResultData = new List<char>(Data.GeneratedCharacterData.Count);
+        Data.ResultData = new List<char>();
         
         for (int i = 0; i < Data.GeneratedCharacterData.Count; i++)
         {

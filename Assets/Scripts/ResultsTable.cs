@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ResultsTable : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
-
-    public List<char> resultData;
-
+    
     private void Start()
     {
         Refresh();
@@ -29,9 +29,7 @@ public class ResultsTable : MonoBehaviour
     void Refresh()
     {
         if (text == null) return;
-        resultData = Data.ResultData;
-        var resultText = new string(Data.ResultData.ToArray());
-        Debug.Log(resultText);
-        text.text = resultText;
+
+        text.text = new string(Data.ResultData.ToArray());
     }
 }
