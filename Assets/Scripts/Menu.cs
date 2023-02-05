@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour
     public void SetDifficulty(int difficulty)
     {
         Data.GamePlay.Level = difficulty;
-
+        
         switch (difficulty)
         {
             case 0:

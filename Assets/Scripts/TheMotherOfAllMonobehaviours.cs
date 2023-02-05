@@ -5,10 +5,5 @@ using UnityEngine;
 
 public class TheMotherOfAllMonobehaviours : MonoBehaviour
 {
-    public PrefabContainer PrefabContainer;
-
-    public void Start()
-    {
-        Main.PrefabContainer = PrefabContainer;
-    }
+    
 }

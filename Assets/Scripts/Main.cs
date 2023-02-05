@@ -13,10 +13,6 @@ public static class Main
     
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
-    
-    
-
-    public static PrefabContainer PrefabContainer;
     public static event Action OnHealthChanged;
     public static event Action<Vector3> OnSucessfulHit;
 
@@ -49,10 +45,12 @@ public static class Main
         
         foreach (var file in files)
         {
-            if (!file.Contains(".txt")) continue;
+            if (!file.Contains(".txt") || file.Contains(".meta")) continue;
             var reader = new StreamReader(file);
             Data.SourceString.Add(reader.ReadToEnd());
         }
+        
+        Debug.Log("asd");
         
         foreach (var keys in Data.KeyBoardLayout)
         {
@@ -137,7 +135,7 @@ public static class Main
     {
         if (Data.CharacterQueue.Count > 0)
             return Data.CharacterQueue.Dequeue();
-        
+        LoadScene("YouWin");
         return null; // End Of Level
     }
 
