@@ -31,6 +31,11 @@ public class Menu : MonoBehaviour
                 break;
         }
     }
+
+    public void ShowCredits()
+    {
+        Main.LoadScene("Credits");
+    }
     public void StartGame()
     {
         Main.StartGame();
