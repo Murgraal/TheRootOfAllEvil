@@ -9,6 +9,8 @@ public class ResultsTable : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
 
+    public List<char> resultData;
+
     private void Start()
     {
         Refresh();
@@ -27,6 +29,7 @@ public class ResultsTable : MonoBehaviour
     void Refresh()
     {
         if (text == null) return;
+        resultData = Data.ResultData;
         text.text = new string(Data.ResultData.ToArray());
     }
 }
