@@ -181,7 +181,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click anywhere to return to main menu.
+  m_text: "Programming - Kim Ord\xE9n & Samuel Zelenka af Rol\xE9n\nBackground Art
+    - Essi Tommila\nCharacter Art - Karoliina Aho \nUI Art - Hanna Saksa \nMusic,
+    SFX & Design - Tuomas Suokko"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7065250ae0fdf493596b345d8063a738, type: 2}
   m_sharedMaterial: {fileID: -957928112721521122, guid: 7065250ae0fdf493596b345d8063a738, type: 2}
