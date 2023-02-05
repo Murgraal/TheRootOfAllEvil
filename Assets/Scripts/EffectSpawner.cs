@@ -10,10 +10,19 @@ public class EffectSpawner : MonoBehaviour
     [SerializeField]
     private Sprite[] _sprites;
 
-    public void SpawnEffect(Vector3 pos)
+    public void SpawnHitEffect(Vector3 pos)
     {
-        var randomIndex = Random.Range(0, _sprites.Length);
+        var index = (int)Data.GamePlay.MultiplierLevel;
+        SpawnEffect(pos, index);
+    }
+    public void SpawnMissEffect(Vector3 pos)
+    {
+        SpawnEffect(pos, _sprites.Length - 1);
+    }
+
+    public void SpawnEffect(Vector3 pos, int index)
+    {
         var hitEffect = GameObject.Instantiate(_effectPrefab, pos, Quaternion.identity);
-        hitEffect.SetSprite(_sprites[randomIndex]);
+        hitEffect.SetSprite(_sprites[index]);
     }
 }

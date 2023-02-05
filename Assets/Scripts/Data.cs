@@ -16,6 +16,10 @@ public static class Data
     {
         public static int Level = 0;
         public static int Health = 100;
+        public static int Score = 0;
+        public static int Streak = 0;
+        public static float ScoreMultiplier;
+        public static MultiplierLevel MultiplierLevel;
         public static bool GameEnd = false;
         public static float HitZoneStart;
         public static float HitZoneEnd;
@@ -67,4 +71,13 @@ public static class Data
         }
     };
 
+    public enum MultiplierLevel
+    {
+        Good,
+        Great,
+        Awesome,
+        Amazing,
+        Incredible,
+        Devilish
+    }
 }

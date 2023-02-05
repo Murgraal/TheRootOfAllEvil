@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         CharacterSpawner.CharacterSpawned += AddSpawnedCharacter;
-        Main.OnSucessfulHit += EffectSpawner.SpawnEffect;
+        Main.OnSucessfulHit += EffectSpawner.SpawnHitEffect;
     }
 
     private void OnDisable()
     {
         CharacterSpawner.CharacterSpawned -= AddSpawnedCharacter;
-        Main.OnSucessfulHit -= EffectSpawner.SpawnEffect;
+        Main.OnSucessfulHit -= EffectSpawner.SpawnHitEffect;
     }
 
     public void AddSpawnedCharacter(MovingCharacter spawnedCharater)

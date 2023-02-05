@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSpawner: {fileID: 8554395524157152650}
-  SpawnedCharacters: []
   SliderSystem: {fileID: 3135875749580993048}
   EffectSpawner: {fileID: 3722628782039315062}
   _movingCharacterPrefab: {fileID: -6177627351398693827, guid: 3b30574360415c84cb924f2fff99b603, type: 3}
@@ -650,28 +649,36 @@ PrefabInstance:
       objectReference: {fileID: 3633784328251862352, guid: 34ac7f6a2b80dea47ba11bb3f3b9b926, type: 3}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 97ad6c3d3df5cf3408f72c3dc5a726bf, type: 3}
+      objectReference: {fileID: 21300000, guid: b800e868cb877954e812c28ec89cdc8f, type: 3}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: d8c9654a109a05d46b1965d379be6f9f, type: 3}
+      objectReference: {fileID: 21300000, guid: 67938c65bb50f4146a3b9204bd2a3171, type: 3}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 0e43530e5f1e1f94d88c52987092802b, type: 3}
+      objectReference: {fileID: 21300000, guid: 97ad6c3d3df5cf3408f72c3dc5a726bf, type: 3}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 67938c65bb50f4146a3b9204bd2a3171, type: 3}
+      objectReference: {fileID: 21300000, guid: d8c9654a109a05d46b1965d379be6f9f, type: 3}
     - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
       propertyPath: _sprites.Array.data[4]
       value: 
       objectReference: {fileID: 21300000, guid: ee53cc7009515ab449ab91e02f4cb33f, type: 3}
+    - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
+      propertyPath: _sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e43530e5f1e1f94d88c52987092802b, type: 3}
+    - target: {fileID: 8753448880529758488, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
+      propertyPath: _sprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6ec9840d8e41edb43a14f8cb77fdfcc2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93421f93a7ab2de44986c86ee6924224, type: 3}
 --- !u!114 &3722628782039315062 stripped

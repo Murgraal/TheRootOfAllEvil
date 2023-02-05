@@ -48,6 +48,7 @@ public class MovingCharacter : MonoBehaviour
             ExitHitZone();
         if (distanceTraveled >= 1)
         {
+            Main.EndStreak();
             CharacterSpawner.DespawnCharacter(this);
         }
     }

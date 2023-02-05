@@ -18,6 +18,8 @@ public static class Main
 
     public static PrefabContainer PrefabContainer;
     public static event Action OnHealthChanged;
+    public static event Action OnScoreChanged;
+    public static event Action OnStreakChanged;
     public static event Action<Vector3> OnSucessfulHit;
 
     public static float[] HealthRewardDistanceTresholds = new[]
@@ -104,7 +106,13 @@ public static class Main
                 Data.GamePlay.GameEnd = true;
                 return;
             }
+            Data.GamePlay.Streak = 0;
             Data.GamePlay.Health -= DamagePerMissedLetter;
+            EndStreak();
+            var missedKeyLaneIndex = Main.GetSliderIndexFromKey(keyCode);
+            var missedSlider = GameManager.SliderSystem.GetSliderByIndex(missedKeyLaneIndex);
+            var missEffectPos = missedSlider.GetPos(GameManager.SliderSystem.HitZoneStart);
+            GameManager.EffectSpawner.SpawnMissEffect(missEffectPos);
         }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
@@ -116,7 +124,12 @@ public static class Main
                     CharacterSpawner.DespawnCharacter(hitCharacter);
                     Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                     Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
+                    Data.GamePlay.ScoreMultiplier = (float)Math.Min(1.0 + 0.5 * (Data.GamePlay.Streak / 10), 6.66);
+                    Data.GamePlay.MultiplierLevel = GetMultiplierLevel();
+                    Data.GamePlay.Score += (int)(10 * Data.GamePlay.ScoreMultiplier);
                     OnSucessfulHit?.Invoke(hitCharacter.transform.position);
+                    IncrementStreak();
+                    OnScoreChanged?.Invoke();
                 }
             }
         }
@@ -150,7 +163,18 @@ public static class Main
     {
         Data.GamePlay.MovingCharactersInHitZone.Remove(data);
     }
-    
+
+    public static void EndStreak()
+    {
+        Data.GamePlay.Streak = 0;
+        OnStreakChanged?.Invoke();
+    }
+    public static void IncrementStreak()
+    {
+        Data.GamePlay.Streak++;
+        OnStreakChanged?.Invoke();
+    }
+
     public static List<MovingCharacterData> GenerateCharacterData(int level)
     {
         if (level >= Data.SourceString.Count) return null;
@@ -209,5 +233,11 @@ public static class Main
         }
         //Debug.Log($"Key {key} is not a letter");
         return SliderIndex.InvalidSlider;
+    }
+
+    private static Data.MultiplierLevel GetMultiplierLevel()
+    {
+        var multiplierCount = Mathf.Clamp((int)((Data.GamePlay.ScoreMultiplier / 0.5f) - 2f), 0, (int)Data.MultiplierLevel.Devilish);
+        return (Data.MultiplierLevel)multiplierCount;
     }
 }
