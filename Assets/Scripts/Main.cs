@@ -144,7 +144,7 @@ public static class Main
                     Data.GamePlay.ScoreMultiplier = (float)Math.Min(1.0 + 0.5 * (Data.GamePlay.Streak / 10), 6.66);
                     Data.GamePlay.MultiplierLevel = GetMultiplierLevel();
                     Data.GamePlay.Score += (int)(10 * Data.GamePlay.ScoreMultiplier);
-                    //OnSucessfulHit?.Invoke(hitCharacter.transform.position);
+                    OnSucessfulHit?.Invoke(hitCharacter.transform.position);
                     IncrementStreak(hitCharacter.transform.position);
                     OnScoreChanged?.Invoke();
                 }

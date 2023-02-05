@@ -50,6 +50,8 @@ public class MovingCharacter : MonoBehaviour
         {
             Main.ReduceHealth();
             Main.EndStreak(transform.position);
+            Main.GameManager.EffectSpawner.SpawnMissEffect(transform.position);
+            Main.GameManager.PlayMissSfx();
             CharacterSpawner.DespawnCharacter(this,0f);
         }
     }
