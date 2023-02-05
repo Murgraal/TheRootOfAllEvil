@@ -31,8 +31,18 @@ public static class Main
         2,
         3
     };
-    
-    public static GameManager GameManager;
+
+    private static GameManager _gameManager;
+
+    public static GameManager GameManager
+    {
+        get
+        {
+            if (_gameManager == null)
+                _gameManager = GameObject.FindObjectOfType<GameManager>();
+            return _gameManager;
+        }
+    }
     
     
     [RuntimeInitializeOnLoadMethod]
