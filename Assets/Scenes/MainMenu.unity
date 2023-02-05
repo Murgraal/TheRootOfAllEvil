@@ -243,10 +243,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5185256386512302356, guid: 2156fb5b554954d4ea6e0945319165ea, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowCredits
-      objectReference: {fileID: 0}
     - target: {fileID: 5289351097575559037, guid: 2156fb5b554954d4ea6e0945319165ea, type: 3}
       propertyPath: m_Pivot.x
       value: 0

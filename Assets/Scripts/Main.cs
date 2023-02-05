@@ -66,6 +66,19 @@ public static class Main
         SceneManager.LoadScene(sceneName);
     }
 
+    public static void ReduceHealth()
+    {
+        if (Data.GamePlay.Health <= 0 && !Data.GamePlay.GameEnd)
+        {
+            Debug.Log("You play shit. You loose : - DDDDDDDD");
+            LoadScene("GameOver");
+            Data.GamePlay.GameEnd = true;
+            return;
+        }
+        Data.GamePlay.Health -= DamagePerMissedLetter;
+        OnHealthChanged?.Invoke();
+    }
+    
     public static void StartGame()
     {
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
@@ -95,14 +108,7 @@ public static class Main
     {
         if (ShouldDamage(keyCode))
         {
-            if (Data.GamePlay.Health <= 0 && !Data.GamePlay.GameEnd)
-            {
-                Debug.Log("You play shit. You loose : - DDDDDDDD");
-                LoadScene("GameOver");
-                Data.GamePlay.GameEnd = true;
-                return;
-            }
-            Data.GamePlay.Health -= DamagePerMissedLetter;
+            ReduceHealth();
         }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
@@ -118,7 +124,6 @@ public static class Main
                 }
             }
         }
-        OnHealthChanged?.Invoke();
     }
 
     public static bool ShouldDamage(KeyCode key)
@@ -188,6 +193,7 @@ public static class Main
         {
             if (distance < HealthRewardDistanceTresholds[i])
             {
+                OnHealthChanged?.Invoke();
                 return HealthRewardsPerTreshold[i];
             }
         }
