@@ -94,7 +94,12 @@ public static class Main
     public static void StartGame()
     {
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
-        
+        Data.GamePlay.Score = 0;
+        Data.GamePlay.MultiplierLevel = Data.MultiplierLevel.Good;
+        Data.GamePlay.ScoreMultiplier = 1f;
+        Data.GamePlay.SpawnedCharacters.Clear();
+        Data.GamePlay.MovingCharactersInHitZone.Clear();
+
         if (Data.GeneratedCharacterData == null) return;
         
         Data.CharacterQueue = GenerateWordQueue();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -11,9 +12,19 @@ public class CharacterSpawner : MonoBehaviour
 
     public static event Action<MovingCharacter> CharacterSpawned;
 
-    public void StartSpawning()
+    private void OnEnable()
     {
         Level.SpawnBeat += SpawnCharacter;
+    }
+
+    private void OnDisable()
+    {
+        Level.SpawnBeat -= SpawnCharacter;
+    }
+
+    public void StartSpawning()
+    {
+        
         _isActive = true;
     }
 
