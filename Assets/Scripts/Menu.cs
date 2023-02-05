@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour
     public void SetDifficulty(int difficulty)
     {
         Data.GamePlay.Level = difficulty;
-
+        
         switch (difficulty)
         {
             case 0:
@@ -30,6 +30,11 @@ public class Menu : MonoBehaviour
                 difficultyText.text = "Impossible Spells";
                 break;
         }
+    }
+
+    public void ShowCredits()
+    {
+        Main.LoadScene("Credits");
     }
     public void StartGame()
     {

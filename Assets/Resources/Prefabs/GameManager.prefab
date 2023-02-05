@@ -284,10 +284,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ea53f7ea29b2413487d1f78f8b11208, type: 2}
   - {fileID: 11400000, guid: 8dc400e002ebc4ce4b74637be930e8bb, type: 2}
   audio: {fileID: 0}
+  sfxClips:
+  - {fileID: 8300000, guid: f6431ccc09a2941b99ba838e988eb29d, type: 3}
+  - {fileID: 8300000, guid: ded7060eed8ca4ef9bcc5376540e1b55, type: 3}
+  - {fileID: 8300000, guid: 2a4801f20d0c04af8aef70818dd21a6f, type: 3}
+  - {fileID: 8300000, guid: 32ababa2b82b7433daedcbac67a6bb54, type: 3}
+  - {fileID: 8300000, guid: bbdce522e0b4e431390a6c3d6f26d81d, type: 3}
   audiosources:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  sfxSource: {fileID: 0}
   audioDelayTimer: 0
   audioStartDelayTime: 1.7
 --- !u!82 &7687600609160496657

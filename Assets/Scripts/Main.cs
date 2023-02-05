@@ -13,10 +13,6 @@ public static class Main
     
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
-    
-    
-
-    public static PrefabContainer PrefabContainer;
     public static event Action OnHealthChanged;
     public static event Action OnScoreChanged;
     public static event Action OnStreakChanged;
@@ -51,10 +47,12 @@ public static class Main
         
         foreach (var file in files)
         {
-            if (!file.Contains(".txt")) continue;
+            if (!file.Contains(".txt") || file.Contains(".meta")) continue;
             var reader = new StreamReader(file);
             Data.SourceString.Add(reader.ReadToEnd());
         }
+        
+        Debug.Log("asd");
         
         foreach (var keys in Data.KeyBoardLayout)
         {
@@ -70,6 +68,19 @@ public static class Main
         SceneManager.LoadScene(sceneName);
     }
 
+    public static void ReduceHealth()
+    {
+        if (Data.GamePlay.Health <= 0 && !Data.GamePlay.GameEnd)
+        {
+            Debug.Log("You play shit. You loose : - DDDDDDDD");
+            LoadScene("GameOver");
+            Data.GamePlay.GameEnd = true;
+            return;
+        }
+        Data.GamePlay.Health -= DamagePerMissedLetter;
+        OnHealthChanged?.Invoke();
+    }
+    
     public static void StartGame()
     {
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
@@ -99,20 +110,14 @@ public static class Main
     {
         if (ShouldDamage(keyCode))
         {
-            if (Data.GamePlay.Health <= 0 && !Data.GamePlay.GameEnd)
-            {
-                Debug.Log("You play shit. You loose : - DDDDDDDD");
-                LoadScene("GameOver");
-                Data.GamePlay.GameEnd = true;
-                return;
-            }
+        	ReduceHealth();
             Data.GamePlay.Streak = 0;
-            Data.GamePlay.Health -= DamagePerMissedLetter;
             EndStreak();
             var missedKeyLaneIndex = Main.GetSliderIndexFromKey(keyCode);
             var missedSlider = GameManager.SliderSystem.GetSliderByIndex(missedKeyLaneIndex);
             var missEffectPos = missedSlider.GetPos(GameManager.SliderSystem.HitZoneStart);
             GameManager.EffectSpawner.SpawnMissEffect(missEffectPos);
+            
         }
         foreach (var keyinhitzone in Data.GamePlay.MovingCharactersInHitZone)
         {
@@ -133,7 +138,6 @@ public static class Main
                 }
             }
         }
-        OnHealthChanged?.Invoke();
     }
 
     public static bool ShouldDamage(KeyCode key)
@@ -150,7 +154,7 @@ public static class Main
     {
         if (Data.CharacterQueue.Count > 0)
             return Data.CharacterQueue.Dequeue();
-        
+        LoadScene("YouWin");
         return null; // End Of Level
     }
 
@@ -214,6 +218,7 @@ public static class Main
         {
             if (distance < HealthRewardDistanceTresholds[i])
             {
+                OnHealthChanged?.Invoke();
                 return HealthRewardsPerTreshold[i];
             }
         }
