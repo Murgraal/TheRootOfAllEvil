@@ -16,6 +16,10 @@ public static class Data
     {
         public static int Level = 0;
         public static int Health = 100;
+        public static bool GameEnd = false;
+        public static float HitZoneStart;
+        public static float HitZoneEnd;
+        public static List<MovingCharacter> SpawnedCharacters = new List<MovingCharacter>();
         public static List<MovingCharacterData> MovingCharactersInHitZone = new List<MovingCharacterData>();
     }
 

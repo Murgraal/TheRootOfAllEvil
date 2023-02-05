@@ -44,7 +44,7 @@ public class CharacterSpawner : MonoBehaviour
         CharacterSpawned?.Invoke(spawnedCharacter);
     }
 
-    public void DespawnCharacter(MovingCharacter character, float delay = 0)
+    public static void DespawnCharacter(MovingCharacter character, float delay = 0)
     {
         Destroy(character.gameObject, delay);
     }

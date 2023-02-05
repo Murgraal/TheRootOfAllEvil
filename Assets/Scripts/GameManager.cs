@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<KeyCode> OnKeyPressed;
     public CharacterSpawner CharacterSpawner;
-    public List<MovingCharacter> SpawnedCharacters = new List<MovingCharacter>();
+    
 
     public CharacterSliderSystem SliderSystem;
 
@@ -35,16 +35,18 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         CharacterSpawner.CharacterSpawned += AddSpawnedCharacter;
+        Main.OnSucessfulHit += EffectSpawner.SpawnEffect;
     }
 
     private void OnDisable()
     {
         CharacterSpawner.CharacterSpawned -= AddSpawnedCharacter;
+        Main.OnSucessfulHit -= EffectSpawner.SpawnEffect;
     }
 
     public void AddSpawnedCharacter(MovingCharacter spawnedCharater)
     {
-        SpawnedCharacters.Add(spawnedCharater);
+        Data.GamePlay.SpawnedCharacters.Add(spawnedCharater);
     }
 
     private void Start()

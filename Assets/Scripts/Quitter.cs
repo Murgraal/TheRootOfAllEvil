@@ -6,9 +6,10 @@ using UnityEngine.XR;
 public class Quitter : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    
+    public void GoToMenu()
     {
-        
+        Main.LoadScene("MainMenu");
     }
 
     // Update is called once per frame

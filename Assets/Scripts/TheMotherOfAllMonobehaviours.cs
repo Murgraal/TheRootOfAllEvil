@@ -10,7 +10,5 @@ public class TheMotherOfAllMonobehaviours : MonoBehaviour
     public void Start()
     {
         Main.PrefabContainer = PrefabContainer;
-        Main.Init();
-        
     }
 }

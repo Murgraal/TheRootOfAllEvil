@@ -31,8 +31,10 @@ public class CharacterSliderSystem : MonoBehaviour
         _hitZoneTopRenderer.transform.position = _characterSliders[1].GetPos(HitZoneStart);
         _hitZoneBottomRenderer.transform.position = _characterSliders[1].GetPos(HitZoneEnd);
 
+        Data.GamePlay.HitZoneStart = HitZoneStart;
+        Data.GamePlay.HitZoneEnd = HitZoneEnd;
     }
-
+    
     public bool IsInHitZone(float t)
     {
         return t > HitZoneStart && t < HitZoneEnd;

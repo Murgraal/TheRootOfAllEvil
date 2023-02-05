@@ -12,9 +12,12 @@ public static class Main
     
     public const int DamagePerMissedLetter = 5;
     public const int StartHealth = 100;
+    
+    
 
     public static PrefabContainer PrefabContainer;
-    public static event Action OnHealthChanged; 
+    public static event Action OnHealthChanged;
+    public static event Action<Vector3> OnSucessfulHit;
 
     public static float[] HealthRewardDistanceTresholds = new[]
     {
@@ -33,6 +36,7 @@ public static class Main
     public static GameManager GameManager;
     
     
+    [RuntimeInitializeOnLoadMethod]
     public static void Init()
     {
         MovingCharacter.OnEnterHitZone += OnEnterHitZone;
@@ -53,7 +57,17 @@ public static class Main
         {
             Data.PolledKeycodes.UnionWith(keys.Keys);
         }
+        
+        GameManager.OnKeyPressed += OnKeyPressed;
+    }
 
+    public static void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public static void StartGame()
+    {
         Data.GeneratedCharacterData = GenerateCharacterData(Data.GamePlay.Level);
         
         if (Data.GeneratedCharacterData == null) return;
@@ -72,20 +86,8 @@ public static class Main
                 Data.ResultData.Add(Data.GeneratedCharacterData[i].Letter);
             }
         }
-        
-        Data.CharacterQueue.ToList().ForEach(x => Debug.Log(x.Letter));
-        
-        GameManager.OnKeyPressed += OnKeyPressed;
-    }
-
-    public static void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public static void StartGame()
-    {
         Data.GamePlay.Health = StartHealth;
+        Data.GamePlay.GameEnd = false;
         LoadScene("Gameplay");
     }
 
@@ -93,9 +95,11 @@ public static class Main
     {
         if (ShouldDamage(keyCode))
         {
-            if (Data.GamePlay.Health <= 0)
+            if (Data.GamePlay.Health <= 0 && !Data.GamePlay.GameEnd)
             {
                 Debug.Log("You play shit. You loose : - DDDDDDDD");
+                LoadScene("GameOver");
+                Data.GamePlay.GameEnd = true;
                 return;
             }
             Data.GamePlay.Health -= DamagePerMissedLetter;
@@ -104,13 +108,13 @@ public static class Main
         {
             if (keyinhitzone.ValidKey == keyCode)
             {
-                var hitCharacter = GameManager.SpawnedCharacters.FirstOrDefault(x => x.data == keyinhitzone);
+                var hitCharacter = Data.GamePlay.SpawnedCharacters.FirstOrDefault(x => x.data == keyinhitzone);
                 if (hitCharacter != null)
                 {
-                    GameManager.CharacterSpawner.DespawnCharacter(hitCharacter);
+                    CharacterSpawner.DespawnCharacter(hitCharacter);
                     Data.ResultData[keyinhitzone.positionInString] = keyinhitzone.Letter;
                     Data.GamePlay.Health += GetHealthBasedOnYPos(keyinhitzone.yPos);
-                    Main.GameManager.EffectSpawner.SpawnEffect(hitCharacter.transform.position);
+                    OnSucessfulHit?.Invoke(hitCharacter.transform.position);
                 }
             }
         }
@@ -178,7 +182,7 @@ public static class Main
 
     public static int GetHealthBasedOnYPos(float movingCharacterYPos)
     {
-        var distance = Mathf.Abs(movingCharacterYPos - GameManager.SliderSystem.HitZoneStart);
+        var distance = Mathf.Abs(movingCharacterYPos - Data.GamePlay.HitZoneStart);
 
         for (int i = 0; i < HealthRewardDistanceTresholds.Length; i++)
         {
@@ -201,7 +205,7 @@ public static class Main
                 return (SliderIndex)i;
             }
         }
-        Debug.Log($"Key {key} is not a letter");
+        //Debug.Log($"Key {key} is not a letter");
         return SliderIndex.InvalidSlider;
     }
 }
