@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     private Level CurrentLevel;
 
     public AudioSource audio;
-    public AudioClip sfxClip;
+    public AudioClip[] sfxClips;
 
     public AudioSource[] audiosources;
-    public AudioSource[] sfxSources;
+    public AudioSource sfxSource;
 
     public static float LineYPos => Line == null ? 0 : Line.position.y;
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void PlaySfx(Vector3 pos)
     {
-        sfxSources[Random.Range(0,sfxSources.Length)].PlayOneShot(sfxClip);
+        sfxSource.PlayOneShot(sfxClips[Random.Range(0,sfxClips.Length)]);
     }
     
     private void Start()
